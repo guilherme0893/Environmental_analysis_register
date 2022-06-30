@@ -4,7 +4,8 @@
   "description": "Backend for Arcadis Challenge",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node src/index.ts"
+    "start": "ts-node src/index.ts",
+    "dev": "nodemon --watch \"./src/**\" ./src/index.ts"
   },
   "keywords": [],
   "author": "Guilherme Duarte",
