@@ -4,13 +4,14 @@
   "description": "Backend for Arcadis Challenge",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node backend/index.ts"
+    "start": "ts-node src/index.ts"
   },
   "keywords": [],
   "author": "Guilherme Duarte",
   "license": "ISC",
   "devDependencies": {
     "@tsconfig/node16": "^1.0.3",
+    "@types/express": "^4.17.13",
     "@types/node": "^18.0.0",
     "nodemon": "^2.0.18",
     "ts-node": "^10.8.1",
@@ -18,6 +19,7 @@
     "typescript": "^4.7.4"
   },
   "dependencies": {
-    "dotenv": "^16.0.1"
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1"
   }
 }
