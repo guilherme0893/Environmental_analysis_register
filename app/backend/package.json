@@ -4,7 +4,7 @@
   "description": "Backend for Arcadis Challenge",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "ts-node backend/index.ts"
   },
   "keywords": [],
   "author": "Guilherme Duarte",
@@ -12,6 +12,8 @@
   "devDependencies": {
     "@tsconfig/node16": "^1.0.3",
     "@types/node": "^18.0.0",
+    "nodemon": "^2.0.18",
+    "ts-node": "^10.8.1",
     "ts-node-dev": "^2.0.0",
     "typescript": "^4.7.4"
   },
