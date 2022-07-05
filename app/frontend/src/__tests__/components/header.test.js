@@ -7,7 +7,7 @@ describe('Tests the header component', () => {
     render(<Header />);
   });
 
-  it('It should be rendered in the Main page', () => {
+  it('It should have a data-testId of main-header', () => {
     expect(screen.getByTestId('main-header')).toBeDefined();
   });
 
