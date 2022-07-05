@@ -3,8 +3,16 @@ import { render, screen } from '@testing-library/react';
 import Header from '../../components/Header';
 
 describe('Tests the header component', () => {
-  it('It should be rendered in the Main page', () => {
+  beforeEach(() => {
     render(<Header />);
+  });
+
+  it('It should be rendered in the Main page', () => {
     expect(screen.getByTestId('main-header')).toBeDefined();
+  });
+
+  it('It should be rendered a text with Arcadis in the title as a h1', () => {
+    const title = screen.getByRole('heading', { value: 'Arcadis', level: 1 });
+    expect(title).toBeInTheDocument();
   });
 });
