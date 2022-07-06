@@ -1,10 +1,21 @@
-import Sample from '../../@types/sample.type';
+import ISample from "../../interfaces/ISample";
 
-const samplePoint: Sample = {
+export const samplePointMock: ISample = {
   id: 1,
   name: 'ponto 1',
   xCoordinate: 70.54,
   yCoordinate: -40.24,
 };
 
-export default samplePoint;
+export const samplePointsMock: ISample[] = [{
+  id: 1,
+  name: 'ponto 1',
+  xCoordinate: 70.54,
+  yCoordinate: -40.24,
+},
+{
+  id: 2,
+  name: 'ponto 2',
+  xCoordinate: 30.54,
+  yCoordinate: -10.24,
+}];
