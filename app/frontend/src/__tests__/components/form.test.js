@@ -1,6 +1,6 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
-import Form from '../../components/Header';
+import Form from '../../components/Form';
 import renderWithRouter from '../../renderWithRouter';
 
 describe('Tests the Form component', () => {
