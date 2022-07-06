@@ -5,12 +5,18 @@ function Form() {
     <div>
       <form data-testid="sample-form">
         <label htmlFor="sampleName">
+          Name:
+          {' '}
           <input />
         </label>
-        <label htmlFor="sampleXCoordinate">
+        <label htmlFor="XCoordinate">
+          X Coordinate:
+          {' '}
           <input />
         </label>
-        <label htmlFor="sampleYCoordinate">
+        <label htmlFor="YCoordinate">
+          Y Coordinate:
+          {' '}
           <input />
         </label>
       </form>
