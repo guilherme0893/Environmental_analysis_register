@@ -1,5 +1,3 @@
-/* eslint-disable import/no-unresolved */
-/* eslint-disable import/extensions */
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import sinon from 'sinon';
@@ -28,7 +26,7 @@ describe('Tests the POST /parameters route', () => {
   });
 
   it('it creates a new sample and returns a status 201', async () => {
-    const response = await chai.request(app).post('/').send(sampleParameterMock);
+    const response = await chai.request(app).post('/parameters').send(sampleParameterMock);
     expect(response.status).to.be.equal(201);
   });
 });

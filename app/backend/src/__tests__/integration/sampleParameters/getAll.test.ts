@@ -1,5 +1,3 @@
-/* eslint-disable import/no-unresolved */
-/* eslint-disable import/extensions */
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import sinon from 'sinon';
@@ -24,7 +22,7 @@ describe('Tests the GET /parameters route', () => {
     (sampleParametersModel.getAll as sinon.SinonStub).restore();
   });
   it('it returns all parameters and a status 200', async () => {
-    const response = await chai.request(app).get('/parameter');
+    const response = await chai.request(app).get('/parameters');
     expect(response.status).toBe(200);
     expect(response.body[0]).toHaveProperty('id');
     expect(response.body[0]).toHaveProperty('samplePointName');
