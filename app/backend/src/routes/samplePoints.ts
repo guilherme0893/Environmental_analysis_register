@@ -7,4 +7,6 @@ const routes = Router();
 
 routes.get('/', samples.getAll);
 
+routes.post('/', samples.create);
+
 export default routes;
