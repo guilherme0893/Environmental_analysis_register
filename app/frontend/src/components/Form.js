@@ -1,6 +1,10 @@
 import React from 'react';
 
 function Form() {
+  const onButtonClick = (event) => {
+    event.preventDefault();
+    return console.log('hello world');
+  };
   return (
     <div>
       <form data-testid="sample-form">
@@ -19,6 +23,12 @@ function Form() {
           {' '}
           <input />
         </label>
+        <button
+          type="submit"
+          onClick={onButtonClick}
+        >
+          Register sample
+        </button>
       </form>
     </div>
   );
