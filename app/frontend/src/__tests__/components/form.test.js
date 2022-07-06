@@ -1,5 +1,6 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
+// import userEvent from '@testing-library/user-event';
 import Form from '../../components/Form';
 import renderWithRouter from '../../renderWithRouter';
 
@@ -27,4 +28,18 @@ describe('Tests the Form component', () => {
     expect(xCoordinate).toBeInTheDocument();
     expect(yCoordinate).toBeInTheDocument();
   });
+  test('It has a button to register samples', () => {
+    renderWithRouter(<Form />);
+    const sendButton = screen.getByRole('button', { name: 'Register sample' });
+    expect(sendButton).toBeInTheDocument();
+  });
+  // TO BE IMPLEMENTED
+  // test('It has a button able to register samples', () => {
+  //   renderWithRouter(<Form />);
+  //   const user = userEvent.setup();
+  //   const sendButton = screen.getByRole('button', { name: 'Register sample' });
+  //   expect(sendButton).toBeInTheDocument();
+  //   user.click(sendButton);
+  //   expect(sendButton).toHaveBeenCalledTimes(1);
+  // });
 });
