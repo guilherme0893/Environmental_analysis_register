@@ -1,28 +1,30 @@
-import app from "../../app";
+/* eslint-disable import/no-unresolved */
+/* eslint-disable import/extensions */
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import sinon from 'sinon';
-chai.use(chaiHttp);
-import samplePoints from '../../models/samplePoints';
-import { samplePointMock } from '../mocks/samplePointsMock';
-const { expect } = chai;
-import connection from "../../models/connection";
-import recreateDatabase from '../recreateDB';
+import app from '../../../app';
+import SamplePoints from '../../../models/samplePoints';
+import { samplePointMock } from '../../mocks/samplePointsMock';
+// import connection from '../../../models/connection';
+// import recreateDatabase from '../../recreateDB';
 
-const samplePointsModel = new samplePoints();
+chai.use(chaiHttp);
+const { expect } = chai;
+
+const samplePointsModel = new SamplePoints();
 
 describe('Tests the POST / route', () => {
-
   beforeEach(async () => {
-    await recreateDatabase(connection);
+    // await recreateDatabase(connection);
     sinon
       .stub(samplePointsModel, 'create')
       .resolves({ ...samplePointMock });
   });
 
-  afterEach(()=>{
+  afterEach(() => {
     (samplePointsModel.create as sinon.SinonStub).restore();
-    connection.end();
+    // connection.end();
   });
 
   it('it creates a new sample and returns a status 201', async () => {

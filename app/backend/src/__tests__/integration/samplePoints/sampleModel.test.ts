@@ -1,12 +1,15 @@
-import app from "../../app";
+/* eslint-disable import/no-unresolved */
+/* eslint-disable import/extensions */
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import sinon from 'sinon';
-chai.use(chaiHttp);
-import samplePoints from '../../models/samplePoints';
-import { samplePointsMock } from '../mocks/samplePointsMock';
+import app from '../../../app';
+import SamplePoints from '../../../models/samplePoints';
+import { samplePointsMock } from '../../mocks/samplePointsMock';
 
-const samplePointsModel = new samplePoints();
+chai.use(chaiHttp);
+
+const samplePointsModel = new SamplePoints();
 
 describe('Tests the GET route', () => {
   jest.setTimeout(10000);
@@ -17,9 +20,9 @@ describe('Tests the GET route', () => {
       .resolves({ ...samplePointsMock });
   });
 
-  afterEach(()=>{
+  afterEach(() => {
     (samplePointsModel.getAll as sinon.SinonStub).restore();
-  })
+  });
   it('it returns all samples and a status 200', async () => {
     const response = await chai.request(app).get('/');
     expect(response.status).toBe(200);
