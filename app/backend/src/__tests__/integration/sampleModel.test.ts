@@ -9,6 +9,7 @@ import { samplePointsMock } from '../mocks/samplePointsMock';
 const samplePointsModel = new samplePoints();
 
 describe('Tests the GET route', () => {
+  jest.setTimeout(10000);
 
   beforeEach(async () => {
     sinon
