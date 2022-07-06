@@ -1,11 +1,8 @@
-import 'jest';
-// import request from 'supertest';
 import app from "../../app";
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import sinon from 'sinon';
 chai.use(chaiHttp);
-import { Response } from 'superagent';
 import samplePoints from '../../models/samplePoints';
 import { samplePointsMock } from '../mocks/samplePointsMock';
 
