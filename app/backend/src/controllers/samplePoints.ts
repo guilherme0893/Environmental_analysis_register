@@ -9,9 +9,9 @@ class SampleController {
     return res.status(200).json(samples);
   };
 
-  public create = async(req: Request, res: Response): Promise<Response> => {
+  public create = async (req: Request, res: Response): Promise<Response> => {
     const { name, xCoordinate, yCoordinate } = req.body;
-    const sample = await this.sampleService.create( name, xCoordinate, yCoordinate);
+    const sample = await this.sampleService.create(name, xCoordinate, yCoordinate);
     return res.status(201).json(sample);
   };
 }
