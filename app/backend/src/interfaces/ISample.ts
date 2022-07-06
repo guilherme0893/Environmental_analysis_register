@@ -3,6 +3,6 @@ interface ISample {
   name: string;
   xCoordinate: number;
   yCoordinate: number;
-};
+}
 
 export default ISample;
