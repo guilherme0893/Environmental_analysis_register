@@ -24,7 +24,7 @@ describe('Tests the GET route', () => {
     (samplePointsModel.getAll as sinon.SinonStub).restore();
   });
   it('it returns all samples and a status 200', async () => {
-    const response = await chai.request(app).get('/');
+    const response = await chai.request(app).get('/samples');
     expect(response.status).toBe(200);
     expect(response.body[0]).toHaveProperty('id');
     expect(response.body[0]).toHaveProperty('name');

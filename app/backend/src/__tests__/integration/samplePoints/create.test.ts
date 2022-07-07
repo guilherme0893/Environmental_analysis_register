@@ -28,7 +28,7 @@ describe('Tests the POST / route', () => {
   });
 
   it('it creates a new sample and returns a status 201', async () => {
-    const response = await chai.request(app).post('/').send(samplePointMock);
+    const response = await chai.request(app).post('/samples').send(samplePointMock);
     expect(response.status).to.be.equal(201);
     // expect(response.body).to.be.deep.equal(samplePointMock);
   });
