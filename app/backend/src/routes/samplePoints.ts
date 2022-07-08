@@ -8,14 +8,17 @@ const samplesValidation = new SamplePointsValidation();
 
 const routes = Router();
 
-routes.get('/samples', samples.getAll);
-
 routes.post(
   '/samples',
   samplesValidation.sampleNameValidation,
   samplesValidation.xCoordinateValidation,
   samplesValidation.yCoordinateValidation,
   samples.create,
+);
+
+routes.get(
+  '/samples',
+  samples.getAll,
 );
 
 export default routes;
