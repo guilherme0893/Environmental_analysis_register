@@ -1,35 +1,23 @@
+/* eslint-disable consistent-return */
 import React from 'react';
+import GlobalContext from '../context/GlobalContext';
+import SampleForm from './SampleForm';
+import ParameterForm from './ParameterForm';
 
 function Form() {
-  const onButtonClick = (event) => {
-    event.preventDefault();
-    return console.log('hello world');
-  };
+  const { form } = React.useContext(GlobalContext);
+
   return (
-    <div>
-      <form data-testid="sample-form">
-        <label htmlFor="sampleName">
-          Name:
-          {' '}
-          <input />
-        </label>
-        <label htmlFor="XCoordinate">
-          X Coordinate:
-          {' '}
-          <input />
-        </label>
-        <label htmlFor="YCoordinate">
-          Y Coordinate:
-          {' '}
-          <input />
-        </label>
-        <button
-          type="submit"
-          onClick={onButtonClick}
-        >
-          Register sample
-        </button>
-      </form>
+    <div data-testid="main-form">
+      {
+        form === 'default' ? null : null
+      }
+      {
+        form === 'samples' ? <SampleForm /> : null
+      }
+      {
+        form === 'parameters' ? <ParameterForm /> : null
+      }
     </div>
   );
 }
