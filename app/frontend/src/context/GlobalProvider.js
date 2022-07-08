@@ -5,10 +5,16 @@ import GlobalContext from './GlobalContext';
 
 function GlobalProvider({ children }) {
   const [value, setValue] = useState('');
+  const [data, setData] = useState('');
+  const [form, setForm] = useState('');
 
   const contextValues = {
     value,
     setValue,
+    data,
+    setData,
+    form,
+    setForm,
   };
 
   return (
