@@ -3,12 +3,8 @@ import { NextFunction, Request, Response } from 'express';
 class SamplePointsValidation {
   public sampleNameValidation = (req: Request, res: Response, next: NextFunction) => {
     const { name } = req.body;
-    if (!name) {
+    if (!name || name === '') {
       return res.status(400).json({ message: 'The sample must have a name' });
-    }
-    if (name.length < 1) {
-      return res.status(422).json({
-        message: 'The sample name must be at least 1 characters long' });
     }
     next();
   };
