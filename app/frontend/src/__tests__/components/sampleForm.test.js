@@ -1,26 +1,29 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
 // import userEvent from '@testing-library/user-event';
-import Form from '../../components/Form';
+import SampleForm from '../../components/SampleForm';
 import renderWithRouter from '../../renderWithRouter';
 
-describe('Tests the Form component', () => {
+describe('Tests the SampleForm component', () => {
   test('It should be rendered with a data-testId of sample-form', () => {
-    renderWithRouter(<Form />);
+    renderWithRouter(<SampleForm />);
     expect(screen.queryByTestId('sample-form')).toBeDefined();
   });
+
   test('It should have a div with 03 labels tags', () => {
-    renderWithRouter(<Form />);
+    renderWithRouter(<SampleForm />);
     const labels = expect(screen.queryAllByRole('label'));
     expect(labels).toBeDefined();
   });
+
   test('It should have a div with 03 input tags', () => {
-    renderWithRouter(<Form />);
+    renderWithRouter(<SampleForm />);
     const labels = expect(screen.queryAllByRole('input'));
     expect(labels).toBeDefined();
   });
+
   test('It should have a div with 03 texts: name, x coordinate, y coordinate', () => {
-    renderWithRouter(<Form />);
+    renderWithRouter(<SampleForm />);
     const name = screen.getByText(/name/i);
     const xCoordinate = screen.getByText(/x coordinate/i);
     const yCoordinate = screen.getByText(/y coordinate/i);
@@ -28,18 +31,18 @@ describe('Tests the Form component', () => {
     expect(xCoordinate).toBeInTheDocument();
     expect(yCoordinate).toBeInTheDocument();
   });
+
   test('It has a button to register samples', () => {
-    renderWithRouter(<Form />);
+    renderWithRouter(<SampleForm />);
     const sendButton = screen.getByRole('button', { name: 'Register sample' });
     expect(sendButton).toBeInTheDocument();
   });
-  // TO BE IMPLEMENTED
+
   // test('It has a button able to register samples', () => {
-  //   renderWithRouter(<Form />);
+  //   renderWithRouter(<SampleForm />);
   //   const user = userEvent.setup();
   //   const sendButton = screen.getByRole('button', { name: 'Register sample' });
   //   expect(sendButton).toBeInTheDocument();
   //   user.click(sendButton);
-  //   expect(sendButton).toHaveBeenCalledTimes(1);
   // });
 });

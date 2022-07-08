@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import Header from '../../components/Header';
 
-describe('Tests the header component', () => {
+describe('Tests the Header component', () => {
   beforeEach(() => {
     render(<Header />);
   });
