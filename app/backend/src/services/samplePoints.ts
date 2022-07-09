@@ -9,6 +9,11 @@ class SampleService {
     return samples;
   };
 
+  public getByName = async (name: string): Promise<ISample[]> => {
+    const sample = await this.sampleModel.getByName(name);
+    return sample as ISample[];
+  };
+
   public create = async (
     name: string,
     xCoordinate: number,

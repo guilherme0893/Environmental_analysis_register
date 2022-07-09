@@ -12,6 +12,15 @@ class SampleController {
     return res.status(200).json(samples);
   };
 
+  public getByName = async (req: Request, res: Response): Promise<Response> => {
+    const { searchedSample } = req.params;
+    const sample = await this.sampleService.getByName(searchedSample);
+    if (sample.length === 0 || !sample) {
+      return res.status(404).json({ message: 'Sample not found!' });
+    }
+    return res.status(200).json(sample);
+  };
+
   public create = async (req: Request, res: Response): Promise<Response> => {
     const { name, xCoordinate, yCoordinate } = req.body;
     const checkSample = await this.sampleModel.getByName(name);
@@ -19,7 +28,6 @@ class SampleController {
       return res.status(409).json({ message: 'Sample already registered' });
     }
     const sample = await this.sampleService.create(name, xCoordinate, yCoordinate);
-    console.log(sample);
     return res.status(201).json(sample);
   };
 }

@@ -21,4 +21,9 @@ routes.get(
   samples.getAll,
 );
 
+routes.get(
+  '/samples/:searchedSample',
+  samples.getByName,
+);
+
 export default routes;
