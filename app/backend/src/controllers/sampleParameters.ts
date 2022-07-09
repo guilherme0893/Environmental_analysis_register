@@ -9,13 +9,23 @@ class SampleParameterController {
     return res.status(200).json(parameters);
   };
 
+  public getByName = async (req: Request, res: Response): Promise<Response> => {
+    const { searchedParameter } = req.params;
+    const parameter = await this.sampleParameterService.getByName(searchedParameter);
+    if (parameter.length === 0 || !parameter) {
+      return res.status(404).json({ message: 'Parameter not found!' });
+    }
+    return res.status(200).json(parameter);
+  };
+
   public create = async (req: Request, res: Response): Promise<Response> => {
-    const { samplePointName, parameter, parameterUnity, parameterValue } = req.body;
+    const { samplePointName, parameter, parameterUnity, parameterValue, samplingDate } = req.body;
     const newParameter = await this.sampleParameterService.create(
       samplePointName,
       parameter,
       parameterUnity,
       parameterValue,
+      samplingDate,
     );
     return res.status(201).json(newParameter);
   };

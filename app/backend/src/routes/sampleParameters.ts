@@ -19,4 +19,9 @@ routes.post(
 
 routes.get('/parameters', parameter.getAll);
 
+routes.get(
+  '/parameters/:searchedParameter',
+  parameter.getByName,
+);
+
 export default routes;

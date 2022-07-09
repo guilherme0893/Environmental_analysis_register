@@ -1,3 +1,4 @@
+/* eslint-disable max-params */
 import SampleParametersModel from '../models/sampleParameters';
 import ISampleParameters from '../interfaces/ISampleParameter';
 
@@ -9,17 +10,24 @@ class SampleParameterService {
     return parameters;
   };
 
+  public getByName = async (sampleParameter: string): Promise<ISampleParameters[]> => {
+    const parameter = await this.sampleParameterModel.getByName(sampleParameter);
+    return parameter as ISampleParameters[];
+  };
+
   public create = async (
     samplePointName: string,
     parameter: string,
     parameterUnity: string,
     parameterValue: number,
+    samplingDate: Date,
   ): Promise<ISampleParameters> => {
     const newParameter = await this.sampleParameterModel.create(
       samplePointName,
       parameter,
       parameterUnity,
       parameterValue,
+      samplingDate,
     );
     return newParameter;
   };

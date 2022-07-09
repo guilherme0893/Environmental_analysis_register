@@ -1,3 +1,5 @@
+/* eslint-disable max-params */
+/* eslint-disable max-lines-per-function */
 import { ResultSetHeader } from 'mysql2/promise';
 import connection from './connection';
 import ISampleParameters from '../interfaces/ISampleParameter';
@@ -9,17 +11,25 @@ class SampleParametersModel {
     return sampleParameters as ISampleParameters[];
   };
 
+  public getByName = async (name: string): Promise<ISampleParameters[]> => {
+    const query = 'SELECT * FROM ArcadisChallenge.sampleParameters WHERE parameter = ?';
+    const [parameter] = await connection.execute(query, [name]);
+    return parameter as ISampleParameters[];
+  };
+
   public create = async (
     samplePointName: string,
     parameter: string,
-    parameterUnity: string,
+    parameterUnity: string, // can be removed?
     parameterValue: number,
+    samplingDate: Date,
   ): Promise<ISampleParameters> => {
     const query = `INSERT INTO ArcadisChallenge.sampleParameters 
-      (samplePointName, parameter, parameterUnity, parameterValue) VALUES (?,?,?,?)`;
+      (samplePointName, parameter, parameterUnity, parameterValue, samplingDate)
+        VALUES (?,?,?,?,?)`;
     const [newParameter] = await connection.execute<ResultSetHeader>(
       query,
-      [samplePointName, parameter, parameterUnity, parameterValue],
+      [samplePointName, parameter, parameterUnity, parameterValue, samplingDate],
     );
     return {
       id: newParameter.insertId,
@@ -27,6 +37,7 @@ class SampleParametersModel {
       parameter,
       parameterUnity,
       parameterValue,
+      samplingDate,
     };
   };
 }
