@@ -4,8 +4,8 @@ import sinon from 'sinon';
 import app from '../../../app';
 import SampleParameters from '../../../models/sampleParameters';
 import { sampleParameterMock } from '../../mocks/sampleParameters/sampleParametersMock';
-// import connection from '../../../models/connection';
-// import recreateDatabase from '../../recreateDB';
+import connection from '../../../models/connection';
+import recreateDatabase from '../../../models/recreateDB';
 
 chai.use(chaiHttp);
 const { expect } = chai;
@@ -14,7 +14,7 @@ const sampleParametersModel = new SampleParameters();
 
 describe('Tests the POST /parameters route', () => {
   beforeEach(async () => {
-    // await recreateDatabase(connection);
+    await recreateDatabase(connection);
     sinon
       .stub(sampleParametersModel, 'create')
       .resolves({ ...sampleParameterMock });
@@ -22,7 +22,7 @@ describe('Tests the POST /parameters route', () => {
 
   afterEach(() => {
     (sampleParametersModel.create as sinon.SinonStub).restore();
-    // connection.end();
+    connection.end();
   });
 
   it('it creates a new sample and returns a status 201', async () => {
