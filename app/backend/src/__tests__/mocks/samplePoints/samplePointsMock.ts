@@ -1,4 +1,4 @@
-import ISample from '../../interfaces/ISample';
+import ISample from '../../../interfaces/ISample';
 
 export const samplePointMock: ISample = {
   id: 1,
