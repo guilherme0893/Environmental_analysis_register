@@ -5,7 +5,7 @@ import app from '../../../app';
 import SampleParameters from '../../../models/sampleParameters';
 import { sampleParameterMock } from '../../mocks/sampleParameters/sampleParametersMock';
 import connection from '../../../models/connection';
-import recreateDatabase from '../../../models/recreateDB';
+// import recreateDatabase from '../../../models/recreateDB';
 
 chai.use(chaiHttp);
 const { expect } = chai;
@@ -14,7 +14,6 @@ const sampleParametersModel = new SampleParameters();
 
 describe('Tests the POST /parameters route', () => {
   beforeEach(async () => {
-    await recreateDatabase(connection);
     sinon
       .stub(sampleParametersModel, 'create')
       .resolves({ ...sampleParameterMock });

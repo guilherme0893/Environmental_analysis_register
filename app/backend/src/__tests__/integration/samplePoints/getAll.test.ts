@@ -5,7 +5,7 @@ import chaiHttp from 'chai-http';
 import sinon from 'sinon';
 import app from '../../../app';
 import SamplePoints from '../../../models/samplePoints';
-import { samplePointsMock } from '../../mocks/samplePointsMock';
+import { samplePointsMock } from '../../mocks/samplePoints/samplePointsMock';
 
 chai.use(chaiHttp);
 

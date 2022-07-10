@@ -4,7 +4,7 @@ import chaiHttp = require('chai-http');
 import app from '../../../app';
 // @ts-ignore
 import SamplePoints from '../../../models/samplePoints';
-import { samplePointMock } from '../../mocks/samplePointsMock';
+import { samplePointMock } from '../../mocks/samplePoints/samplePointsMock';
 // import connection from '../../../models/connection';
 // import recreateDatabase from '../../recreateDB';
 
