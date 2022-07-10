@@ -1,18 +1,14 @@
 import React from 'react';
-import FormSelect from '../components/FormSelect';
 import Header from '../components/Header';
-import Form from '../components/Form';
-import DataTable from '../components/DataTable';
-import TableSelect from '../components/TableSelect';
+import FormTabs from '../components/FormTabs';
+import TablesTabs from '../components/TablesTabs';
 
 function Main() {
   return (
     <div>
       <Header />
-      <FormSelect />
-      <Form />
-      <TableSelect />
-      <DataTable />
+      <FormTabs />
+      <TablesTabs />
     </div>
   );
 }
