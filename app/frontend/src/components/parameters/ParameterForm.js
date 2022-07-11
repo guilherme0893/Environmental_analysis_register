@@ -14,9 +14,11 @@ function ParameterForm() {
   const [unity, setUnity] = useState('');
   const [value, setValue] = useState('');
   const [samplingDate, setSamplingDate] = useState('');
+  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
   const onNameInputChange = ({ target }) => {
     setSampleName(target.value);
+    setIsButtonDisabled(false);
   };
 
   const onParameterInputChange = ({ target }) => {
@@ -36,6 +38,7 @@ function ParameterForm() {
   };
 
   async function create() {
+    // função que confirma a existência da sample no db aqui???
     return axios.post('http://localhost:3004/parameters', {
       samplePointName: sampleName,
       parameter,
@@ -89,6 +92,7 @@ function ParameterForm() {
           required
           onChange={onSamplingDateInputChange}
           style={{ marginBottom: '5px' }}
+          placeholder="Please enter YYYY-MM-DD format"
         />
       </FormGroup>
       <ColorButton
@@ -97,6 +101,7 @@ function ParameterForm() {
         variant="contained"
         size="small"
         onClick={create}
+        disabled={isButtonDisabled}
       >
         Register
       </ColorButton>

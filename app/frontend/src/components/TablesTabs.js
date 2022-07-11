@@ -8,6 +8,7 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import SearchParameterTable from './parameters/SearchParameterTable';
 import SearchSampleTable from './samples/SearchSampleTable';
+import CompleteDataTable from './CompleteDataTable';
 
 function TabPanel(props) {
   const {
@@ -50,6 +51,7 @@ export default function DataTabs() {
         <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
           <Tab label="Samples" />
           <Tab label="Parameters" />
+          <Tab label="Complete data" />
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
@@ -57,6 +59,9 @@ export default function DataTabs() {
       </TabPanel>
       <TabPanel value={value} index={1}>
         <SearchParameterTable />
+      </TabPanel>
+      <TabPanel value={value} index={2}>
+        <CompleteDataTable />
       </TabPanel>
     </Box>
   );
