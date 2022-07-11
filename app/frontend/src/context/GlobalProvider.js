@@ -11,6 +11,8 @@ function GlobalProvider({ children }) {
   const [parameters, setParameters] = useState([]);
   const [sample, setSample] = useState([]);
   const [parameter, setParameter] = useState([]);
+  const [completeData, setCompleteData] = useState([]);
+  const [selectValue, setSelectValue] = useState([]);
 
   const contextValues = React.useMemo(() => ({
     value,
@@ -27,7 +29,11 @@ function GlobalProvider({ children }) {
     setSample,
     parameter,
     setParameter,
-  }), [value, data, form, samples, parameters, sample, parameter]);
+    completeData,
+    setCompleteData,
+    selectValue,
+    setSelectValue,
+  }), [value, data, form, samples, parameters, sample, parameter, selectValue, selectValue]);
 
   return (
     <GlobalContext.Provider value={contextValues}>
