@@ -13,23 +13,23 @@ class SampleController {
   };
 
   public getByName = async (req: Request, res: Response): Promise<Response> => {
-    const { searchedSample } = req.params;
-    const sample = await this.sampleService.getByName(searchedSample);
-    if (sample.length === 0 || !sample) {
-      return res.status(404).json({
-        message: 'Sample not found! Please check the spell or register the sample' });
+    try {
+      const { searchedSample } = req.params;
+      const sample = await this.sampleService.getByName(searchedSample);
+      return res.status(200).json(sample);
+    } catch (error) {
+      return res.status(404).json({ message: error });
     }
-    return res.status(200).json(sample);
   };
 
   public create = async (req: Request, res: Response): Promise<Response> => {
-    const { name, xCoordinate, yCoordinate } = req.body;
-    const checkSample = await this.sampleModel.getByName(name);
-    if (checkSample.length > 0) {
-      return res.status(409).json({ message: 'Sample already registered' });
+    try {
+      const { name, xCoordinate, yCoordinate } = req.body;
+      const sample = await this.sampleService.create(name, xCoordinate, yCoordinate);
+      return res.status(201).json(sample);
+    } catch (error) {
+      return res.status(409).json({ message: error });
     }
-    const sample = await this.sampleService.create(name, xCoordinate, yCoordinate);
-    return res.status(201).json(sample);
   };
 
   public deleteSample = async (req: Request, res: Response): Promise<Response> => {

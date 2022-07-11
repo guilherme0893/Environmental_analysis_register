@@ -11,6 +11,9 @@ class SampleService {
 
   public getByName = async (name: string): Promise<ISample[]> => {
     const sample = await this.sampleModel.getByName(name);
+    if (sample.length === 0 || !sample) {
+      throw new Error('Sample not found! Please check the spell or register the sample');
+    }
     return sample as ISample[];
   };
 
@@ -19,6 +22,8 @@ class SampleService {
     xCoordinate: number,
     yCoordinate: number,
   ): Promise<ISample> => {
+    const checkSample = await this.sampleModel.getByName(name);
+    if (checkSample.length > 0) throw new Error('Sample already registered');
     const sample = await this.sampleModel.create(name, xCoordinate, yCoordinate);
     return sample;
   };

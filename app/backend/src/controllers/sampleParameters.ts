@@ -10,13 +10,12 @@ class SampleParameterController {
   };
 
   public getByName = async (req: Request, res: Response): Promise<Response> => {
-    const { searchedParameter } = req.params;
-    const parameter = await this.sampleParameterService.getByName(searchedParameter);
-    if (parameter.length === 0 || !parameter) {
-      return res.status(404).json({
-        message: 'Parameter not found! Please check the spell or register the parameter' });
+    try {
+      const { searchedParameter } = req.params;
+      return res.status(200).json(searchedParameter);
+    } catch (error) {
+      return res.status(404).json({ message: error });
     }
-    return res.status(200).json(parameter);
   };
 
   public create = async (req: Request, res: Response): Promise<Response> => {
