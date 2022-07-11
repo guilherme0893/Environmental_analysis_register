@@ -4,7 +4,8 @@ class ParametersValidation {
   public samplePointNameValidation = (req: Request, res: Response, next: NextFunction) => {
     const { samplePointName } = req.body;
     if (!samplePointName || samplePointName === '') {
-      return res.status(400).json({ message: 'The sample point is required' });
+      return res.status(400).json({
+        message: 'The sample point is required, please register it before continue' });
     }
     next();
   };
