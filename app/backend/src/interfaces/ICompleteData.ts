@@ -6,7 +6,7 @@ interface ICompleteData {
   parameterValue: number;
   xCoordinate: number;
   yCoordinate: number;
-  samplingDate: Date;
+  samplingDate: Date | string;
 }
 
 export default ICompleteData;

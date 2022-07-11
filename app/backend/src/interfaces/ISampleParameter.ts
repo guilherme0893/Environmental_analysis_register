@@ -4,7 +4,7 @@ interface ISampleParameters {
   parameter: string;
   parameterUnity: string;
   parameterValue: number;
-  samplingDate: Date;
+  samplingDate: Date | string;
 }
 
 export default ISampleParameters;
