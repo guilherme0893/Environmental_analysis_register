@@ -16,7 +16,8 @@ class SampleController {
     const { searchedSample } = req.params;
     const sample = await this.sampleService.getByName(searchedSample);
     if (sample.length === 0 || !sample) {
-      return res.status(404).json({ message: 'Sample not found!' });
+      return res.status(404).json({
+        message: 'Sample not found! Please check the spell or register the sample' });
     }
     return res.status(200).json(sample);
   };

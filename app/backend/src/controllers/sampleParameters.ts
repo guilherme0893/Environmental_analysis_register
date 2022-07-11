@@ -13,7 +13,8 @@ class SampleParameterController {
     const { searchedParameter } = req.params;
     const parameter = await this.sampleParameterService.getByName(searchedParameter);
     if (parameter.length === 0 || !parameter) {
-      return res.status(404).json({ message: 'Parameter not found!' });
+      return res.status(404).json({
+        message: 'Parameter not found! Please check the spell or register the parameter' });
     }
     return res.status(200).json(parameter);
   };
