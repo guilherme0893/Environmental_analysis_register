@@ -7,7 +7,7 @@
     "start": "ts-node src/index.ts",
     "dev": "nodemon --watch \"./src/**\" ./src/index.ts",
     "test:coverage": "jest --coverage",
-    "test": "jest --watch",
+    "test": "jest --watch --silent",
     "lint": "eslint ./src --ext .ts"
   },
   "keywords": [],
