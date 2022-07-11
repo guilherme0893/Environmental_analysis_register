@@ -5,8 +5,6 @@ import app from '../../../app';
 // @ts-ignore
 import SamplePoints from '../../../models/samplePoints';
 import { samplePointMock } from '../../mocks/samplePoints/samplePointsMock';
-// import connection from '../../../models/connection';
-// import recreateDatabase from '../../recreateDB';
 
 chai.use(chaiHttp);
 const { expect } = chai;
@@ -22,11 +20,12 @@ describe('Tests the POST / route', () => {
 
   afterAll(() => {
     (samplePointsModel.create as sinon.SinonStub).restore();
+    samplePointsModel.deleteSample(samplePointMock.name);
   });
 
-  it('it returns an error if the samples exists and status', async () => {
+  it('creates a new sample', async () => {
     const response = await chai.request(app).post('/samples').send(samplePointMock);
-    expect(response.status).to.be.equal(409);
-    expect(response.text).to.be.deep.equal('{"message":"Sample already registered"}');
+    expect(response.status).to.be.equal(201);
+    expect(response.body).to.be.deep.equal(samplePointMock);
   });
 });

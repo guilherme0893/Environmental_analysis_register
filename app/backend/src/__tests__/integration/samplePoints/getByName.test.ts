@@ -31,10 +31,8 @@ describe('Tests the GET route', () => {
     const response = await chai.request(app).get('/samples/ponto 1');
     expect(response.status).to.be.equal(200);
     expect(response.body.length).to.be.equal(1);
-    expect(response.body[0]).to.have.property('id');
     expect(response.body[0]).to.have.property('name');
     expect(response.body[0]).to.have.property('x_coordinate');
     expect(response.body[0]).to.have.property('y_coordinate');
-    // expect(response.body[0]).to.be.deep.equal(samplePointMock);
   });
 });

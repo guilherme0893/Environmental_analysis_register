@@ -31,7 +31,6 @@ describe('Tests the GET route', () => {
     const response = await chai.request(app).get('/parameters/cromo');
     expect(response.status).to.be.equal(200);
     expect(response.body.length).to.be.greaterThanOrEqual(1);
-    expect(response.body[0]).to.have.property('id');
     expect(response.body[0]).to.have.property('samplePointName');
     expect(response.body[0]).to.have.property('parameter');
     expect(response.body[0]).to.have.property('parameterUnity');

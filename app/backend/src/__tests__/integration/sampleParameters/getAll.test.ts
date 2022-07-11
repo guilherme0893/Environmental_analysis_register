@@ -24,7 +24,6 @@ describe('Tests the GET /parameters route', () => {
   it('it returns all parameters and a status 200', async () => {
     const response = await chai.request(app).get('/parameters');
     expect(response.status).toBe(200);
-    expect(response.body[0]).toHaveProperty('id');
     expect(response.body[0]).toHaveProperty('samplePointName');
     expect(response.body[0]).toHaveProperty('parameter');
     expect(response.body[0]).toHaveProperty('parameterUnity');
