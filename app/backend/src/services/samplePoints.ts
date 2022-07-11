@@ -22,6 +22,14 @@ class SampleService {
     const sample = await this.sampleModel.create(name, xCoordinate, yCoordinate);
     return sample;
   };
+
+  public deleteSample = async (name: string) => {
+    try {
+      return await this.sampleModel.deleteSample(name);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 }
 
 export default SampleService;

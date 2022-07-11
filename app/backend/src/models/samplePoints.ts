@@ -22,16 +22,25 @@ class SamplePointModel {
   ): Promise<ISample> => {
     const query = `INSERT INTO ArcadisChallenge.samplePoints
       (name, x_coordinate, y_coordinate) VALUES(?,?,?)`;
-    const [sample] = await connection.execute<ResultSetHeader>(
+    await connection.execute<ResultSetHeader>(
       query,
       [name, xCoordinate, yCoordinate],
     );
     return {
-      id: sample.insertId,
+      // id: sample.insertId,
       name,
       xCoordinate,
       yCoordinate,
     };
+  };
+
+  public deleteSample = async (name: string) => {
+    try {
+      console.log(name);
+      await connection.execute('DELETE FROM ArcadisChallenge.samplePoints WHERE name = ?', [name]);
+    } catch (error) {
+      console.error(error);
+    }
   };
 }
 

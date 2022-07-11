@@ -26,4 +26,6 @@ routes.get(
   samples.getByName,
 );
 
+routes.delete('/samples/:sampleName', samples.deleteSample);
+
 export default routes;

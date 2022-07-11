@@ -31,6 +31,12 @@ class SampleController {
     const sample = await this.sampleService.create(name, xCoordinate, yCoordinate);
     return res.status(201).json(sample);
   };
+
+  public deleteSample = async (req: Request, res: Response): Promise<Response> => {
+    const { sampleName } = req.params;
+    await this.sampleService.deleteSample(sampleName);
+    return res.status(204).end();
+  };
 }
 
 export default SampleController;

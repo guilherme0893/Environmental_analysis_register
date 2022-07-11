@@ -1,8 +1,8 @@
 import ISample from '../../../interfaces/ISample';
 
 export const samplePointMock: ISample = {
-  id: 1,
-  name: 'ponto 1',
+  // id: 1,
+  name: 'ponto teste',
   xCoordinate: 70.54,
   yCoordinate: -40.24,
 };

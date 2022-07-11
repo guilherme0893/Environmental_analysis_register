@@ -2,7 +2,7 @@ import ISampleParameter from '../../../interfaces/ISampleParameter';
 
 export const sampleParameterMock: ISampleParameter = {
   id: 1,
-  samplePointName: 'ponto 1',
+  samplePointName: 'ponto 100',
   parameter: 'cromo',
   parameterUnity: 'mg/l',
   parameterValue: 0.05,
