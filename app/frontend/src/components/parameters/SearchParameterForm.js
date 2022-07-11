@@ -7,10 +7,13 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { orange } from '@mui/material/colors';
 import GlobalContext from '../../context/GlobalContext';
+import Error from '../Error';
 
 function SearchParameterForm() {
   const [parameterName, setParameterName] = useState('');
-  const { setParameter } = React.useContext(GlobalContext);
+  const {
+    setParameter, setError, isError, setIsError,
+  } = React.useContext(GlobalContext);
 
   const onNameInputChange = ({ target }) => {
     setParameterName(target.value);
@@ -18,7 +21,11 @@ function SearchParameterForm() {
 
   async function SearchParameter() {
     await axios.get(`http://localhost:3004/parameters/${parameterName}`)
-      .then((response) => setParameter(response.data));
+      .then((response) => setParameter(response.data))
+      .catch((err) => {
+        setIsError(true);
+        setError(err.response.data.message);
+      });
   }
 
   const ColorButton = styled(Button)(({ theme }) => ({
@@ -31,23 +38,29 @@ function SearchParameterForm() {
 
   return (
     <div>
-      <FormGroup data-testid="sample-form">
-        <p style={{ marginBottom: '5px' }}>Parameter name</p>
-        <TextField
-          required
-          onChange={onNameInputChange}
-          style={{ marginBottom: '5px' }}
-        />
-      </FormGroup>
-      <ColorButton
-        style={{ marginTop: '15px' }}
-        type="submit"
-        variant="contained"
-        size="small"
-        onClick={SearchParameter}
-      >
-        Search
-      </ColorButton>
+      {
+        isError ? <Error /> : (
+          <div>
+            <FormGroup data-testid="sample-form">
+              <p style={{ marginBottom: '5px' }}>Parameter name</p>
+              <TextField
+                required
+                onChange={onNameInputChange}
+                style={{ marginBottom: '5px' }}
+              />
+            </FormGroup>
+            <ColorButton
+              style={{ marginTop: '15px' }}
+              type="submit"
+              variant="contained"
+              size="small"
+              onClick={SearchParameter}
+            >
+              Search
+            </ColorButton>
+          </div>
+        )
+      }
     </div>
   );
 }

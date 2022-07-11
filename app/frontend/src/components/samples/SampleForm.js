@@ -6,12 +6,15 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { orange } from '@mui/material/colors';
 import { styled } from '@mui/material/styles';
+import GlobalContext from '../../context/GlobalContext';
+import Error from '../Error';
 
 function SampleForm() {
   const [samples, setSamples] = useState([]);
   const [sampleName, setSampleName] = useState('');
   const [sampleXCoordinate, setSampleXCoordinate] = useState('');
   const [sampleYCoordinate, setSampleYCoordinate] = useState('');
+  const { setError, isError, setIsError } = React.useContext(GlobalContext);
 
   const onNameInputChange = ({ target }) => {
     setSampleName(target.value);
@@ -34,8 +37,9 @@ function SampleForm() {
       .then((sample) => {
         setSamples([...samples, sample.data]);
       })
-      .catch((error) => {
-        console.log(error.response);
+      .catch((err) => {
+        setIsError(true);
+        setError(err.response.data.message);
       });
   }
 
@@ -49,35 +53,41 @@ function SampleForm() {
 
   return (
     <div>
-      <FormGroup data-testid="sample-form">
-        <p style={{ marginBottom: '5px' }}>Name</p>
-        <TextField
-          required
-          onChange={onNameInputChange}
-          style={{ marginBottom: '5px' }}
-        />
-        <p style={{ marginBottom: '5px' }}>X Coordinate</p>
-        <TextField
-          required
-          onChange={onXCoordinateInputChange}
-          style={{ marginBottom: '5px' }}
-        />
-        <p style={{ marginBottom: '5px' }}>Y Coordinate</p>
-        <TextField
-          required
-          onChange={onYCoordinateInputChange}
-          style={{ marginBottom: '5px' }}
-        />
-      </FormGroup>
-      <ColorButton
-        style={{ marginTop: '15px' }}
-        type="submit"
-        variant="contained"
-        size="small"
-        onClick={create}
-      >
-        Register
-      </ColorButton>
+      {
+        isError ? <Error /> : (
+          <div>
+            <FormGroup data-testid="sample-form">
+              <p style={{ marginBottom: '5px' }}>Name</p>
+              <TextField
+                required
+                onChange={onNameInputChange}
+                style={{ marginBottom: '5px' }}
+              />
+              <p style={{ marginBottom: '5px' }}>X Coordinate</p>
+              <TextField
+                required
+                onChange={onXCoordinateInputChange}
+                style={{ marginBottom: '5px' }}
+              />
+              <p style={{ marginBottom: '5px' }}>Y Coordinate</p>
+              <TextField
+                required
+                onChange={onYCoordinateInputChange}
+                style={{ marginBottom: '5px' }}
+              />
+            </FormGroup>
+            <ColorButton
+              style={{ marginTop: '15px' }}
+              type="submit"
+              variant="contained"
+              size="small"
+              onClick={create}
+            >
+              Register
+            </ColorButton>
+          </div>
+        )
+      }
     </div>
   );
 }

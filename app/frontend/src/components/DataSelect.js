@@ -27,7 +27,6 @@ function DataSelect() {
 
   const onHandleChange = (value) => {
     setSelectValue(value);
-    console.log(selectValue);
   };
 
   return (

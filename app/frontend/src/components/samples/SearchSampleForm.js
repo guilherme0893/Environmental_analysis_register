@@ -7,10 +7,13 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { orange } from '@mui/material/colors';
 import GlobalContext from '../../context/GlobalContext';
+import Error from '../Error';
 
 function SearchSampleForm() {
   const [sampleName, setSampleName] = useState('');
-  const { setSample } = React.useContext(GlobalContext);
+  const {
+    setSample, setError, isError, setIsError,
+  } = React.useContext(GlobalContext);
 
   const onNameInputChange = ({ target }) => {
     setSampleName(target.value);
@@ -18,7 +21,11 @@ function SearchSampleForm() {
 
   async function searchSample() {
     await axios.get(`http://localhost:3004/samples/${sampleName}`)
-      .then((response) => setSample(response.data));
+      .then((response) => setSample(response.data))
+      .catch((err) => {
+        setIsError(true);
+        setError(err.response.data.message);
+      });
   }
 
   const ColorButton = styled(Button)(({ theme }) => ({
@@ -31,23 +38,29 @@ function SearchSampleForm() {
 
   return (
     <div>
-      <FormGroup data-testid="sample-form">
-        <p style={{ marginBottom: '5px' }}>Sample name</p>
-        <TextField
-          required
-          onChange={onNameInputChange}
-          style={{ marginBottom: '5px' }}
-        />
-      </FormGroup>
-      <ColorButton
-        style={{ marginTop: '15px' }}
-        type="submit"
-        variant="contained"
-        size="small"
-        onClick={searchSample}
-      >
-        Search
-      </ColorButton>
+      {
+        isError ? <Error /> : (
+          <div>
+            <FormGroup data-testid="sample-form">
+              <p style={{ marginBottom: '5px' }}>Sample name</p>
+              <TextField
+                required
+                onChange={onNameInputChange}
+                style={{ marginBottom: '5px' }}
+              />
+            </FormGroup>
+            <ColorButton
+              style={{ marginTop: '15px' }}
+              type="submit"
+              variant="contained"
+              size="small"
+              onClick={searchSample}
+            >
+              Search
+            </ColorButton>
+          </div>
+        )
+      }
     </div>
   );
 }
