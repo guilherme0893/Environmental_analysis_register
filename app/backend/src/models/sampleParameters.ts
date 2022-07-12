@@ -14,7 +14,7 @@ class SampleParametersModel {
   public getByName = async (name: string): Promise<ISampleParameters[]> => {
     const query = 'SELECT * FROM ArcadisChallenge.sampleParameters WHERE parameter = ?';
     const [parameter] = await connection.execute(query, [name]);
-    return parameter as ISampleParameters[];
+    return parameter as unknown as ISampleParameters[];
   };
 
   public create = async (

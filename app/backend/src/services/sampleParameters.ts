@@ -12,9 +12,6 @@ class SampleParameterService {
 
   public getByName = async (sampleParameter: string): Promise<ISampleParameters[]> => {
     const parameter = await this.sampleParameterModel.getByName(sampleParameter);
-    if (parameter.length === 0 || !parameter) {
-      throw new Error('Parameter not found! Please check the spell or register the parameter');
-    }
     return parameter as ISampleParameters[];
   };
 
