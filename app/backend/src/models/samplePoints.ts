@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 import { ResultSetHeader } from 'mysql2/promise';
 import connection from './connection';
 import ISample from '../interfaces/ISample';
@@ -19,15 +20,15 @@ class SamplePointModel {
     name: string,
     xCoordinate: number,
     yCoordinate: number,
-  ): Promise<ISample> => {
+  ): Promise<ISample | undefined> => {
     const query = `INSERT INTO ArcadisChallenge.samplePoints
-      (name, x_coordinate, y_coordinate) VALUES(?,?,?)`;
+    (name, x_coordinate, y_coordinate) VALUES(?,?,?)`;
     await connection.execute<ResultSetHeader>(
       query,
       [name, xCoordinate, yCoordinate],
     );
     return {
-      // id: sample.insertId,
+    // id: sample.insertId,
       name,
       xCoordinate,
       yCoordinate,
@@ -36,7 +37,6 @@ class SamplePointModel {
 
   public deleteSample = async (name: string) => {
     try {
-      console.log(name);
       await connection.execute('DELETE FROM ArcadisChallenge.samplePoints WHERE name = ?', [name]);
     } catch (error) {
       console.error(error);
