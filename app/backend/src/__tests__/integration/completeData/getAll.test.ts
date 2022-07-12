@@ -6,7 +6,7 @@ import chaiHttp = require('chai-http');
 // @ts-ignore
 import app from '../../../app';
 import CompleteData from '../../../models/completeData';
-import fullCompleteDataMock from '../../mocks/completeData/completeDataMock';
+import { fullCompleteDataMock } from '../../mocks/completeData/completeDataMock';
 
 chai.use(chaiHttp);
 const { expect } = chai;
@@ -37,7 +37,7 @@ describe('Tests the GET /parameters completeData', () => {
     expect(response.body[0]).to.have.property('parameter');
     expect(response.body[0]).to.have.property('parameterUnity');
     expect(response.body[0]).to.have.property('parameterValue');
-    // expect(response.body[0]).to.have.property('x_coordinate');
+    expect(response.body[0]).to.have.property('x_coordinate');
     expect(response.body[0]).to.have.property('y_coordinate');
     expect(response.body[0]).to.have.property('samplingDate');
     expect(response.body.length).to.be.greaterThanOrEqual(1);
