@@ -27,12 +27,19 @@ describe('Tests the GET route', () => {
   afterEach(() => {
     (samplePointsModel.getByName as sinon.SinonStub).restore();
   });
-  it('it returns one sample and a status 200', async () => {
+  it('returns one sample and a status 200', async () => {
     const response = await chai.request(app).get('/samples/ponto 1');
     expect(response.status).to.be.equal(200);
     expect(response.body.length).to.be.equal(1);
     expect(response.body[0]).to.have.property('name');
     expect(response.body[0]).to.have.property('x_coordinate');
     expect(response.body[0]).to.have.property('y_coordinate');
+  });
+
+  it(`returns the message "Sample not found! Please check the spell or register the sample"
+  , if the parameter is not found and the status 404`, async () => {
+    const response = await chai.request(app).get('/samples/teste');
+    expect(response.status).to.be.equal(404);
+    expect(response.body).to.have.property('message');
   });
 });
