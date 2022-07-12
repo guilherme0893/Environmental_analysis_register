@@ -9,6 +9,10 @@ class SampleController {
 
   public getAll = async (_req:Request, res:Response): Promise<Response> => {
     const samples = await this.sampleService.getAll();
+    if (samples.length === 0 || !samples) {
+      return res.status(404).json({
+        message: 'Samples not found! Please check the server or if samples were registred!' });
+    }
     return res.status(200).json(samples);
   };
 

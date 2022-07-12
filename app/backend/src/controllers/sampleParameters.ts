@@ -11,6 +11,10 @@ class SampleParameterController {
 
   public getAll = async (_req:Request, res:Response): Promise<Response> => {
     const parameters = await this.sampleParameterService.getAll();
+    if (parameters.length === 0 || !parameters) {
+      return res.status(404).json({
+        message: 'Parameters not found! Please check the server or if parameters were registred!' });
+    }
     return res.status(200).json(parameters);
   };
 
