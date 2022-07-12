@@ -1,5 +1,11 @@
 import ISample from '../../../interfaces/ISample';
 
+export const emptySamplePointMock: ISample[] = [{
+  name: '',
+  xCoordinate: 70.54,
+  yCoordinate: -40.24,
+}];
+
 export const samplePointMock: ISample = {
   // id: 1,
   name: 'ponto teste',
