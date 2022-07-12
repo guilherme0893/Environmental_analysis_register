@@ -1,7 +1,12 @@
+/* eslint-disable max-lines-per-function */
+/* eslint-disable max-len */
 import { Request, Response } from 'express';
+// import SamplePointModel from '../models/samplePoints';
 import SampleParameterService from '../services/sampleParameters';
 
 class SampleParameterController {
+  // public samplePointsModel = new SamplePointModel();
+
   public sampleParameterService = new SampleParameterService();
 
   public getAll = async (_req:Request, res:Response): Promise<Response> => {
@@ -22,15 +27,19 @@ class SampleParameterController {
   };
 
   public create = async (req: Request, res: Response): Promise<Response> => {
-    const { samplePointName, parameter, parameterUnity, parameterValue, samplingDate } = req.body;
-    const newParameter = await this.sampleParameterService.create(
-      samplePointName,
-      parameter,
-      parameterUnity,
-      parameterValue,
-      samplingDate,
-    );
-    return res.status(201).json(newParameter);
+    try {
+      const { samplePointName, parameter, parameterUnity, parameterValue, samplingDate } = req.body;
+      const newParameter = await this.sampleParameterService.create(
+        samplePointName,
+        parameter,
+        parameterUnity,
+        parameterValue,
+        samplingDate,
+      );
+      return res.status(201).json(newParameter);
+    } catch (error) {
+      return res.status(409).json({ message: 'This sample has not been registed yet! Register it first before continue' });
+    }
   };
 }
 

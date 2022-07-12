@@ -16,12 +16,12 @@ function ParameterForm() {
   const [unity, setUnity] = useState('');
   const [value, setValue] = useState('');
   const [samplingDate, setSamplingDate] = useState('');
-  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+  // const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const { setError, isError, setIsError } = React.useContext(GlobalContext);
 
   const onNameInputChange = ({ target }) => {
     setSampleName(target.value);
-    setIsButtonDisabled(false);
+    // setIsButtonDisabled(false);
   };
 
   const onParameterInputChange = ({ target }) => {
@@ -107,7 +107,7 @@ function ParameterForm() {
               variant="contained"
               size="small"
               onClick={create}
-              disabled={isButtonDisabled}
+              // disabled={isButtonDisabled}
             >
               Register
             </ColorButton>

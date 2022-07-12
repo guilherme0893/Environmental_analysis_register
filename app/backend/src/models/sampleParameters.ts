@@ -3,8 +3,11 @@
 import { ResultSetHeader } from 'mysql2/promise';
 import connection from './connection';
 import ISampleParameters from '../interfaces/ISampleParameter';
+// import SamplePointModel from './samplePoints';
 
 class SampleParametersModel {
+  // public samplePointsModel = new SamplePointModel();
+
   public getAll = async (): Promise<ISampleParameters[]> => {
     const query = 'SELECT * FROM ArcadisChallenge.sampleParameters;';
     const [sampleParameters] = await connection.execute(query);
@@ -24,6 +27,10 @@ class SampleParametersModel {
     parameterValue: number,
     samplingDate: Date,
   ): Promise<ISampleParameters> => {
+    const samplePoint = await this.getByName(samplePointName);
+    if (!samplePoint || samplePoint.length === 0) {
+      throw new Error('This sample has not been registed yet! Register it first before continuing');
+    }
     const query = `INSERT INTO ArcadisChallenge.sampleParameters 
       (samplePointName, parameter, parameterUnity, parameterValue, samplingDate)
         VALUES (?,?,?,?,?)`;

@@ -22,14 +22,18 @@ class SampleParameterService {
     parameterValue: number,
     samplingDate: Date,
   ): Promise<ISampleParameters> => {
-    const newParameter = await this.sampleParameterModel.create(
-      samplePointName,
-      parameter,
-      parameterUnity,
-      parameterValue,
-      samplingDate,
-    );
-    return newParameter;
+    try {
+      const newParameter = await this.sampleParameterModel.create(
+        samplePointName,
+        parameter,
+        parameterUnity,
+        parameterValue,
+        samplingDate,
+      );
+      return newParameter;
+    } catch (error) {
+      throw new Error('This sample has not been registed yet! Register it first before continuing');
+    }
   };
 }
 
