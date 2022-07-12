@@ -25,4 +25,6 @@ routes.get(
   parameter.getByName,
 );
 
+routes.delete('/parameter/:parameter', parameter.deleteParameter);
+
 export default routes;

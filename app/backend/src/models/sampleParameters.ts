@@ -3,10 +3,10 @@
 import { ResultSetHeader } from 'mysql2/promise';
 import connection from './connection';
 import ISampleParameters from '../interfaces/ISampleParameter';
-// import SamplePointModel from './samplePoints';
+import SamplePointModel from './samplePoints';
 
 class SampleParametersModel {
-  // public samplePointsModel = new SamplePointModel();
+  public samplePointsModel = new SamplePointModel();
 
   public getAll = async (): Promise<ISampleParameters[]> => {
     const query = 'SELECT * FROM ArcadisChallenge.sampleParameters;';
@@ -27,9 +27,9 @@ class SampleParametersModel {
     parameterValue: number,
     samplingDate: Date,
   ): Promise<ISampleParameters> => {
-    const samplePoint = await this.getByName(samplePointName);
+    const samplePoint = await this.samplePointsModel.getByName(samplePointName);
     if (!samplePoint || samplePoint.length === 0) {
-      throw new Error('This sample has not been registed yet! Register it first before continuing');
+      throw new Error('This sample has not been registed yet! Register it first before continue');
     }
     const query = `INSERT INTO ArcadisChallenge.sampleParameters 
       (samplePointName, parameter, parameterUnity, parameterValue, samplingDate)
@@ -46,6 +46,15 @@ class SampleParametersModel {
       parameterValue,
       samplingDate,
     };
+  };
+
+  public deleteParameter = async (name: string) => {
+    try {
+      const query = 'DELETE FROM ArcadisChallenge.sampleParameters WHERE parameter = ?';
+      await connection.execute(query, [name]);
+    } catch (error) {
+      console.error(error);
+    }
   };
 }
 

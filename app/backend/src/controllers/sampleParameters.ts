@@ -17,7 +17,6 @@ class SampleParameterController {
   public getByName = async (req: Request, res: Response): Promise<Response> => {
     const { searchedParameter } = req.params;
     const parameter = await this.sampleParameterService.getByName(searchedParameter);
-    console.log(parameter);
     if (parameter.length === 0 || !parameter) {
       return res.status(404).json({
         message: `Parameter not found! Please check the spell or 
@@ -40,6 +39,12 @@ class SampleParameterController {
     } catch (error) {
       return res.status(409).json({ message: 'This sample has not been registed yet! Register it first before continue' });
     }
+  };
+
+  public deleteParameter = async (req: Request, res: Response): Promise<Response> => {
+    const { parameter } = req.params;
+    await this.sampleParameterService.deleteParameter(parameter);
+    return res.status(204).end();
   };
 }
 

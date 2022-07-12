@@ -35,6 +35,14 @@ class SampleParameterService {
       throw new Error('This sample has not been registed yet! Register it first before continuing');
     }
   };
+
+  public deleteParameter = async (parameter: string) => {
+    try {
+      return await this.sampleParameterModel.deleteParameter(parameter);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 }
 
 export default SampleParameterService;
