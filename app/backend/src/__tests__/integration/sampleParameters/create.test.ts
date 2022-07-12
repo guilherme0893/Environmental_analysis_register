@@ -1,11 +1,10 @@
+/* eslint-disable max-lines-per-function */
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import sinon from 'sinon';
 import app from '../../../app';
 import SampleParameters from '../../../models/sampleParameters';
 import { sampleParameterMock } from '../../mocks/sampleParameters/sampleParametersMock';
-import connection from '../../../models/connection';
-// import recreateDatabase from '../../../models/recreateDB';
 
 chai.use(chaiHttp);
 const { expect } = chai;
@@ -21,11 +20,33 @@ describe('Tests the POST /parameters route', () => {
 
   afterEach(() => {
     (sampleParametersModel.create as sinon.SinonStub).restore();
-    connection.end();
+    sampleParametersModel.deleteParameter(sampleParameterMock.parameter);
   });
 
-  it('it creates a new sample and returns a status 201', async () => {
+  // beforeAll(async () => {
+  //   sinon
+  //     .stub(samplePointsModel, 'getAll')
+  //     .resolves({ ...completeSamplePointsMock });
+  //   sinon
+  //     .stub(samplePointsModel, 'create')
+  //     .resolves({ ...samplePointMock });
+  // });
+
+  // afterAll(() => {
+  //   (samplePointsModel.create as sinon.SinonStub).restore();
+  //   (samplePointsModel.getAll as sinon.SinonStub).restore();
+  //   samplePointsModel.deleteSample(samplePointMock.name);
+  // });
+
+  it('it creates a new parameter and returns a status 201', async () => {
     const response = await chai.request(app).post('/parameters').send(sampleParameterMock);
+    expect(response.body.samplePointName).to.be.equal('ponto 1');
+    expect(response.body.parameter).to.be.equal('teste');
+    expect(response.body).to.have.property('samplePointName');
+    expect(response.body).to.have.property('parameter');
+    expect(response.body).to.have.property('parameterUnity');
+    expect(response.body).to.have.property('parameterValue');
+    expect(response.body).to.have.property('samplingDate');
     expect(response.status).to.be.equal(201);
   });
 });
