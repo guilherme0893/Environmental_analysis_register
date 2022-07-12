@@ -36,6 +36,23 @@ class ParametersValidation {
     }
     next();
   };
+
+  // public parameterCheck = async (req: Request, res: Response, next: NextFunction) => {
+  //   const { samplePointName, parameter, parameterUnity, parameterValue, samplingDate } = req.body;
+  //   const newParameter = {
+  //     samplePointName,
+  //     parameter,
+  //     parameterUnity,
+  //     parameterValue,
+  //     samplingDate,
+  //   };
+  //   const checkParameter = await this.sampleParameterService.getByName(parameter);
+  //   const finalCheck = checkParameter.find((p) => p === newParameter);
+  //   finalCheck
+  //     ? res.status(409).json({ message: 'These informations have already been registered' })
+  //     : res.status(201).json(newParameter);
+  // //   next();
+  // };
 }
 
 export default ParametersValidation;
