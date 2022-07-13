@@ -8,6 +8,10 @@ import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import { Select, TableContainer } from '@mui/material';
 import GlobalContext from '../context/GlobalContext';
 
 function CompleteDataTable() {
@@ -38,17 +42,21 @@ function CompleteDataTable() {
 
   return (
     <div>
-      <Paper>
-        <div>
-          <select
+      <TableContainer component={Paper}>
+        <FormControl fullWidth>
+          <InputLabel id="data-label">Data</InputLabel>
+          <Select
+            labelId="data-label"
+            id="data-label"
+            label="data"
             onChange={(event) => onHandleChange(event.target.value)}
           >
-            <option value="default">Select option</option>
-            <option value="completeData">Complete data</option>
-            <option value="overlimitData">Overlimit data</option>
-          </select>
-        </div>
-        <Table data-testid="table">
+            <MenuItem value="default">Select option</MenuItem>
+            <MenuItem value="completeData">Complete data</MenuItem>
+            <MenuItem value="overlimitData">Overlimit data</MenuItem>
+          </Select>
+        </FormControl>
+        <Table data-testid="table" sx={{ minWidth: 650 }} size="large">
           <TableHead data-testid="table-head">
             <TableRow data-testid="table-row">
               <TableCell data-testid="header-cell" align="center">Sample</TableCell>
@@ -63,7 +71,10 @@ function CompleteDataTable() {
           <TableBody data-testid="table-body">
             {!completeData || completeData === null || completeData === false ? <div /> : (
               completeData.map((data, index) => (
-                <TableRow key={index}>
+                <TableRow
+                  key={index}
+                  sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                >
                   <TableCell data-testid="table-data" align="center">{data.name}</TableCell>
                   <TableCell data-testid="table-data" align="center">{data.x_coordinate ? data.x_coordinate.toFixed(2) : null }</TableCell>
                   <TableCell data-testid="table-data" align="center">{data.y_coordinate ? data.y_coordinate.toFixed(2) : null}</TableCell>
@@ -75,7 +86,9 @@ function CompleteDataTable() {
               )))}
           </TableBody>
         </Table>
-      </Paper>
+      </TableContainer>
+      {' '}
+
     </div>
   );
 }

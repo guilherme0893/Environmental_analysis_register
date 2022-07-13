@@ -4,7 +4,7 @@ import axios from 'axios';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
-import TableHead from '@mui/material/TableHead';
+import { TableHead, TableContainer } from '@mui/material';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
@@ -21,8 +21,8 @@ function ParametersTable() {
   });
 
   return (
-    <Paper>
-      <Table data-testid="table">
+    <TableContainer component={Paper}>
+      <Table data-testid="table" sx={{ minWidth: 650 }} size="large">
         <TableHead data-testid="table-head">
           <TableRow data-testid="table-row">
             <TableCell data-testid="header-cell" align="center">Sample</TableCell>
@@ -34,7 +34,10 @@ function ParametersTable() {
         </TableHead>
         <TableBody data-testid="table-body">
           {parameters.map((parameter, index) => (
-            <TableRow key={index}>
+            <TableRow
+              key={index}
+              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+            >
               <TableCell data-testid="table-data" align="center">{parameter.samplePointName}</TableCell>
               <TableCell data-testid="table-data" align="center">{parameter.parameter}</TableCell>
               <TableCell data-testid="table-data" align="center">{parameter.parameterUnity}</TableCell>
@@ -44,7 +47,7 @@ function ParametersTable() {
           ))}
         </TableBody>
       </Table>
-    </Paper>
+    </TableContainer>
   );
 }
 

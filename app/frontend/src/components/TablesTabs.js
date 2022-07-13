@@ -48,7 +48,12 @@ export default function DataTabs() {
   return (
     <Box sx={{ width: '100%' }}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
+        <Tabs
+          variant="scrollable"
+          scrollButtons="auto"
+          value={value}
+          onChange={handleChange}
+        >
           <Tab label="Samples" />
           <Tab label="Parameters" />
           <Tab label="Complete data" />
