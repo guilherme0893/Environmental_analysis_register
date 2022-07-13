@@ -48,7 +48,12 @@ export default function FormTabs() {
   return (
     <Box sx={{ width: '100%' }}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        <Tabs value={value} onChange={handleChange}>
+        <Tabs
+          variant="scrollable"
+          scrollButtons="auto"
+          value={value}
+          onChange={handleChange}
+        >
           <Tab label="Register sample" />
           <Tab label="Register parameter" />
           <Tab label="Search sample" />
