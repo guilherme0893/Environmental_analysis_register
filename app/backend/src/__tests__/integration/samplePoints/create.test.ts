@@ -38,7 +38,7 @@ describe('Tests the POST / route', () => {
 
   it('returns status 409 and the message "Sample already registered"', async () => {
     const getAllResponse = await chai.request(app).get('/samples');
-    expect(getAllResponse.body[2].name).to.be.equal(samplePointMock.name);
+    expect(getAllResponse.body[0].name).to.be.equal('ponto 1');
     const createResponse = await chai.request(app).post('/samples').send(samplePointMock);
     expect(createResponse.status).to.be.equal(409);
     expect(createResponse.body).to.have.property('message');
