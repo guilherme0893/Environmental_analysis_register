@@ -14,10 +14,10 @@ class CompleteDataModel {
             points.x_coordinate,
             points.y_coordinate,
             parameters.samplingDate
-        FROM ArcadisChallenge.samplePoints AS points
-        LEFT JOIN ArcadisChallenge.sampleParameters AS parameters
-        ON points.name = parameters.samplePointName) AS overlimitParameters
-    ORDER BY points.name;`;
+        FROM samplePoints AS points
+        LEFT JOIN sampleParameters AS parameters
+        ON points.name = parameters.samplePointName) AS overlimitParameters;`;
+    // ORDER BY points.name;`;
     const [completeData] = await connection.execute(query);
     return completeData as ICompleteData[];
   };
@@ -32,8 +32,8 @@ class CompleteDataModel {
             points.x_coordinate,
             points.y_coordinate,
             parameters.samplingDate
-        FROM ArcadisChallenge.samplePoints AS points
-        LEFT JOIN ArcadisChallenge.sampleParameters AS parameters
+        FROM samplePoints AS points
+        LEFT JOIN sampleParameters AS parameters
         ON points.name = parameters.samplePointName
   WHERE (parameter = 'cadmio' AND parameterValue > 0.001) 
   OR (parameter = 'cromo' AND parameterValue > 0.01)
