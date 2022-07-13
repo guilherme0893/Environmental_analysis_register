@@ -12,11 +12,11 @@ function DataSelect() {
   async function getCompleteData(selectValue) {
     if (selectValue === 'default') return null;
     if (selectValue === 'completeData') {
-      await axios.get('http://localhost:3004/completeData')
+      await axios.get('https://arcadis-backend.herokuapp.com/completeData')
         .then((response) => setCompleteData(response.data));
     }
     if (selectValue === 'overlimitData') {
-      await axios.get('http://localhost:3004/overlimitData')
+      await axios.get('https://arcadis-backend.herokuapp.com/overlimitData')
         .then((response) => setCompleteData(response.data));
     }
   }
