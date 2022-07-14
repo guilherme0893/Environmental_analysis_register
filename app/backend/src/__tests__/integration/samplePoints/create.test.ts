@@ -14,14 +14,21 @@ const { expect } = chai;
 
 const samplePointsModel = new SamplePoints();
 
+type samplePointsType = {
+  id: number;
+  name: string;
+  xCoordinate: number;
+  yCoordinate: number;
+}
+
 describe('Tests the POST / route', () => {
   beforeAll(async () => {
     sinon
       .stub(samplePointsModel, 'getAll')
-      .resolves({ ...completeSamplePointsMock });
+      .resolves({ ...completeSamplePointsMock } as samplePointsType[]);
     sinon
       .stub(samplePointsModel, 'create')
-      .resolves({ ...samplePointMock });
+      .resolves({ ...samplePointMock } as samplePointsType);
   });
 
   afterAll(() => {
@@ -38,7 +45,7 @@ describe('Tests the POST / route', () => {
 
   it('returns status 409 and the message "Sample already registered"', async () => {
     const getAllResponse = await chai.request(app).get('/samples');
-    expect(getAllResponse.body[2].name).to.be.equal(samplePointMock.name);
+    expect(getAllResponse.body[0].name).to.be.equal('ponto 1');
     const createResponse = await chai.request(app).post('/samples').send(samplePointMock);
     expect(createResponse.status).to.be.equal(409);
     expect(createResponse.body).to.have.property('message');

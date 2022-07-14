@@ -1,16 +1,3 @@
-// function Header() {
-//   return (
-//     <div>
-//       <header data-testid="main-header" style={{ display: 'flex' }}>
-//         <img alt="Arcadis-logo" src={arcadisLogo} style={{ display: 'flex' }}/>
-//         <h1>Sample register </h1>
-//       </header>
-//     </div>
-//   );
-// }
-
-// export default Header;
-
 import React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';

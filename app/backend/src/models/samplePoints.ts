@@ -5,13 +5,13 @@ import ISample from '../interfaces/ISample';
 
 class SamplePointModel {
   public getAll = async (): Promise<ISample[]> => {
-    const query = 'SELECT * FROM ArcadisChallenge.samplePoints;';
+    const query = 'SELECT * FROM samplePoints;';
     const [samplePoints] = await connection.execute(query);
     return samplePoints as ISample[];
   };
 
   public getByName = async (name: string): Promise<ISample[]> => {
-    const query = 'SELECT * FROM ArcadisChallenge.samplePoints WHERE name = ?';
+    const query = 'SELECT * FROM samplePoints WHERE name = ?';
     const [samplePoint] = await connection.execute(query, [name]);
     return samplePoint as ISample[];
   };
@@ -21,7 +21,7 @@ class SamplePointModel {
     xCoordinate: number,
     yCoordinate: number,
   ): Promise<ISample | undefined> => {
-    const query = `INSERT INTO ArcadisChallenge.samplePoints
+    const query = `INSERT INTO samplePoints
     (name, x_coordinate, y_coordinate) VALUES(?,?,?)`;
     await connection.execute<ResultSetHeader>(
       query,
@@ -37,7 +37,7 @@ class SamplePointModel {
 
   public deleteSample = async (name: string) => {
     try {
-      await connection.execute('DELETE FROM ArcadisChallenge.samplePoints WHERE name = ?', [name]);
+      await connection.execute('DELETE FROM samplePoints WHERE name = ?', [name]);
     } catch (error) {
       console.error(error);
     }

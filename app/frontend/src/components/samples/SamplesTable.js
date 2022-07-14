@@ -14,7 +14,7 @@ function SamplesTable() {
   const { samples, setSamples } = React.useContext(GlobalContext);
 
   async function getAllSamples() {
-    const response = await axios.get('https://arcadis-backend.herokuapp.com/samples');
+    const response = await axios.get('https://arcadis-backend.herokuapp.com/samples' || 'http://localhost:3004/samples');
     setSamples(response.data);
   }
 

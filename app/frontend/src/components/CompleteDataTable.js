@@ -13,10 +13,11 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import { Select, TableContainer } from '@mui/material';
 import GlobalContext from '../context/GlobalContext';
+import Error from './Error';
 
 function CompleteDataTable() {
   const {
-    setCompleteData, selectValue, setSelectValue, completeData,
+    setCompleteData, selectValue, setSelectValue, completeData, setIsError, setError, isError,
   } = React.useContext(GlobalContext);
 
   const onHandleChange = (value) => {
@@ -27,12 +28,20 @@ function CompleteDataTable() {
   async function getCompleteData() {
     if (selectValue === 'default') return null;
     if (selectValue === 'completeData') {
-      await axios.get('https://arcadis-backend.herokuapp.com/completeData')
-        .then((response) => setCompleteData(response.data));
+      await axios.get('https://arcadis-backend.herokuapp.com/completeData' || 'http://localhost:3004/completeData')
+        .then((response) => setCompleteData(response.data))
+        .catch((err) => {
+          setIsError(true);
+          setError(err.response.data.message);
+        });
     }
     if (selectValue === 'overlimitData') {
-      await axios.get('https://arcadis-backend.herokuapp.com/overlimitData')
-        .then((response) => setCompleteData(response.data));
+      await axios.get('https://arcadis-backend.herokuapp.com/overlimitData' || 'http://localhost:3004/overlimitData')
+        .then((response) => setCompleteData(response.data))
+        .catch((err) => {
+          setIsError(true);
+          setError(err.response.data.message);
+        });
     }
   }
 
@@ -69,26 +78,27 @@ function CompleteDataTable() {
             </TableRow>
           </TableHead>
           <TableBody data-testid="table-body">
-            {!completeData || completeData === null || completeData === false ? <div /> : (
-              completeData.map((data, index) => (
-                <TableRow
-                  key={index}
-                  sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                >
-                  <TableCell data-testid="table-data" align="center">{data.name}</TableCell>
-                  <TableCell data-testid="table-data" align="center">{data.x_coordinate ? data.x_coordinate.toFixed(2) : null }</TableCell>
-                  <TableCell data-testid="table-data" align="center">{data.y_coordinate ? data.y_coordinate.toFixed(2) : null}</TableCell>
-                  <TableCell data-testid="table-data" align="center">{data.parameter}</TableCell>
-                  <TableCell data-testid="table-data" align="center">{data.parameterUnity}</TableCell>
-                  <TableCell data-testid="table-data" align="center">{data.parameterValue ? Number(data.parameterValue).toFixed(3) : null}</TableCell>
-                  <TableCell data-testid="table-data" align="center">{data.samplingDate ? (data.samplingDate).slice(0, -14) : null}</TableCell>
-                </TableRow>
-              )))}
+            {
+              isError ? <Error /> : (
+                completeData.map((data, index) => (
+                  <TableRow
+                    key={index}
+                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                  >
+                    <TableCell data-testid="table-data" align="center">{data.name}</TableCell>
+                    <TableCell data-testid="table-data" align="center">{data.x_coordinate ? data.x_coordinate.toFixed(2) : null }</TableCell>
+                    <TableCell data-testid="table-data" align="center">{data.y_coordinate ? data.y_coordinate.toFixed(2) : null}</TableCell>
+                    <TableCell data-testid="table-data" align="center">{data.parameter}</TableCell>
+                    <TableCell data-testid="table-data" align="center">{data.parameterUnity}</TableCell>
+                    <TableCell data-testid="table-data" align="center">{data.parameterValue ? Number(data.parameterValue).toFixed(3) : null}</TableCell>
+                    <TableCell data-testid="table-data" align="center">{data.samplingDate ? (data.samplingDate).slice(0, -14) : null}</TableCell>
+                  </TableRow>
+                ))
+              )
+            }
           </TableBody>
         </Table>
       </TableContainer>
-      {' '}
-
     </div>
   );
 }

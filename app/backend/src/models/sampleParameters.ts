@@ -9,13 +9,13 @@ class SampleParametersModel {
   public samplePointsModel = new SamplePointModel();
 
   public getAll = async (): Promise<ISampleParameters[]> => {
-    const query = 'SELECT * FROM ArcadisChallenge.sampleParameters;';
+    const query = 'SELECT * FROM sampleParameters;';
     const [sampleParameters] = await connection.execute(query);
     return sampleParameters as ISampleParameters[];
   };
 
   public getByName = async (name: string): Promise<ISampleParameters[]> => {
-    const query = 'SELECT * FROM ArcadisChallenge.sampleParameters WHERE parameter = ?';
+    const query = 'SELECT * FROM sampleParameters WHERE parameter = ?';
     const [parameter] = await connection.execute(query, [name]);
     return parameter as unknown as ISampleParameters[];
   };
@@ -31,7 +31,7 @@ class SampleParametersModel {
     if (!samplePoint || samplePoint.length === 0) {
       throw new Error('This sample has not been registed yet! Register it first before continue');
     }
-    const query = `INSERT INTO ArcadisChallenge.sampleParameters 
+    const query = `INSERT INTO sampleParameters 
       (samplePointName, parameter, parameterUnity, parameterValue, samplingDate)
         VALUES (?,?,?,?,?)`;
     const [newParameter] = await connection.execute<ResultSetHeader>(
@@ -50,7 +50,7 @@ class SampleParametersModel {
 
   public deleteParameter = async (name: string) => {
     try {
-      const query = 'DELETE FROM ArcadisChallenge.sampleParameters WHERE parameter = ?';
+      const query = 'DELETE FROM sampleParameters WHERE parameter = ?';
       await connection.execute(query, [name]);
     } catch (error) {
       console.error(error);

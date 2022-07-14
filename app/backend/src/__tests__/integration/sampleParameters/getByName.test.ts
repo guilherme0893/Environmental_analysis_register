@@ -7,7 +7,7 @@ import chaiHttp = require('chai-http');
 import app from '../../../app';
 // @ts-ignore
 import SampleParameters from '../../../models/sampleParameters';
-import { sampleParametersMock } from '../../mocks/sampleParameters/sampleParametersMock';
+// import { sampleParametersMock } from '../../mocks/sampleParameters/sampleParametersMock';
 
 chai.use(chaiHttp);
 
@@ -15,13 +15,37 @@ const { expect } = chai;
 
 const sampleParameters = new SampleParameters();
 
+type sampleParametersTypes = {
+  id: number;
+  samplePointName?: string;
+  parameter: string;
+  parameterUnity: string;
+  parameterValue: number;
+  samplingDate: Date | string;
+}
+
 describe('Tests the GET route', () => {
   jest.setTimeout(10000);
 
   beforeEach(async () => {
     sinon
       .stub(sampleParameters, 'getByName')
-      .resolves({ ...sampleParametersMock });
+      .resolves([{
+        id: 1,
+        samplePointName: 'ponto 1',
+        parameter: 'cromo',
+        parameterUnity: 'mg/l',
+        parameterValue: 0.05,
+        samplingDate: '2022/07/09' as unknown as Date,
+      },
+      {
+        id: 2,
+        samplePointName: 'ponto 2',
+        parameter: 'cádmio',
+        parameterUnity: 'mg/l',
+        parameterValue: 0.5,
+        samplingDate: '2022/07/10' as unknown as Date,
+      }] as sampleParametersTypes[]);
   });
 
   afterEach(() => {
@@ -29,8 +53,8 @@ describe('Tests the GET route', () => {
   });
   it('it returns all samples where the parameters is present and a status 200', async () => {
     const response = await chai.request(app)
-      .get(`/parameters/${sampleParametersMock[0].parameter}`);
-    expect(response.body[0].parameter).to.be.equal(sampleParametersMock[0].parameter);
+      .get('/parameters/cromo');
+    expect(response.body[0].parameter).to.be.equal('cromo');
     expect(response.status).to.be.equal(200);
     expect(response.body.length).to.be.greaterThanOrEqual(1);
     expect(response.body[0]).to.have.property('samplePointName');
