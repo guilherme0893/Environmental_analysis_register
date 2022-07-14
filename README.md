@@ -4,7 +4,7 @@ Welcome to the Arcadis Challenge repository, here is registed all steps taken by
 
 # Goal
 
-Here the goal was to create an application where the user could initially register samples by adding their name, X and Y coordinates. Then, it would also be possible to add parameters related to a given sample; such parameters are: the parameter name itself, the value, the unity used and the sampling date. In summary, it is possible to:
+In many environmental studies, it is necessary to sample data throughout the study area during different time periods in order to analyze water quality, for example, and potential pollution impacts. It is also very common the collected data to be large, what makes harder to deal with it. Having that in mind, this application provides a solution; the goal is to create an application -- which is desing to work both on mobile devices or desktop via web -- where the user is able to register samples, initially by adding their name, X and Y coordinates. Then, whether the sample has any measured parameter, it is possible to register it; here the parameters is composed of d parameters related to a given sample; such parameters are: the parameter name itself, the value, the unity used and the sampling date. In summary, it is possible to:
 
 - Register samples
 - Register parameters
