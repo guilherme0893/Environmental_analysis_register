@@ -1,12 +1,17 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
 // import userEvent from '@testing-library/user-event';
-import SampleForm from '../../components/SampleForm';
+import SampleForm from '../../components/samples/SampleForm';
 import renderWithRouter from '../../renderWithRouter';
+import GlobalProvider from '../../context/GlobalProvider';
 
 describe('Tests the SampleForm component', () => {
   test('It should be rendered with a data-testId of sample-form', () => {
-    renderWithRouter(<SampleForm />);
+    renderWithRouter(
+      <GlobalProvider>
+        <SampleForm />
+      </GlobalProvider>,
+    );
     expect(screen.queryByTestId('sample-form')).toBeDefined();
   });
 

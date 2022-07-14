@@ -27,11 +27,11 @@ function CompleteDataTable() {
   async function getCompleteData() {
     if (selectValue === 'default') return null;
     if (selectValue === 'completeData') {
-      await axios.get('https://arcadis-backend.herokuapp.com/completeData')
+      await axios.get('https://arcadis-backend.herokuapp.com/completeData' || 'http://localhost:3004/completeData')
         .then((response) => setCompleteData(response.data));
     }
     if (selectValue === 'overlimitData') {
-      await axios.get('https://arcadis-backend.herokuapp.com/overlimitData')
+      await axios.get('https://arcadis-backend.herokuapp.com/overlimitData' || 'http://localhost:3004/overlimitData')
         .then((response) => setCompleteData(response.data));
     }
   }
@@ -87,8 +87,6 @@ function CompleteDataTable() {
           </TableBody>
         </Table>
       </TableContainer>
-      {' '}
-
     </div>
   );
 }

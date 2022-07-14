@@ -1,7 +1,7 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
 // import userEvent from '@testing-library/user-event';
-import ParameterTable from '../../components/ParameterTable';
+import ParameterTable from '../../components/parameters/ParametersTable';
 import renderWithRouter from '../../renderWithRouter';
 
 describe('Tests the ParameterTable component', () => {
