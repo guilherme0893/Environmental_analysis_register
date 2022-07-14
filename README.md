@@ -29,7 +29,7 @@ For the backend and database, the API is hosted on Heroku; the database is also 
 
 The following project can be used locally. <b>Make sure you have installed both NodeJS and MySQL locally!</b>
 
-  1) Clone this repository by <code>git clone</code> and enter the folder
+  1) Clone this repository by <code>git clone git@github.com:guilherme0893/Arcadis_Challenge.git</code> and enter the folder
 
   2) Go to the backend by folder running <code>cd app/backend</code> and inside of it <code>npm install</code> to install dependencies
 
@@ -41,7 +41,55 @@ The following project can be used locally. <b>Make sure you have installed both 
     
   4) To run the application locally <code>npm run dev</code>
   
+# Inserting and retreiving data
+
+The API is setted so it is possible to access samplePoints, sampleParameters and completeData/overlimitData. To get data related to such endpoint, the method GET is used as it follows for each example.
+```
+samplePoints
+
+1) getAll: /samples
+2) getByName: /samples/:searchedSample
+
+sampleParameters
+
+1) getAll: /parameters
+2) getByName: /parameters/:parameter
+
+completeData
+
+1) getAll: /completeData
+2) getAll: /overlimitData
+```
+
+To insert data related to each endpoint, the method POST is used as it follows for each example.
+```
+samplePoints
+
+1) create: /samples
+
+{
+  "name": string,
+  "xCoordinate": number,
+  "yCoordinate": number,
+}
+```
+```
+sampleParameters
+
+1) create: /parameters
+
+{
+  "samplePointName": string,
+  "parameter": number,
+  "parameterUnity": string,
+  "parameterValue": number,
+  "samplingDate": Date | string
+}
+```
 # Frontend
+
+The frontend is setted to consume data supported by Axios. In the requisitions (get and post), two url are provided to fetch data, as the given example:
+('https://arcadis-backend.herokuapp.com/parameters' || 'http://localhost:3004/parameters'). With this, it is possible to fetch data, whether it is hosted on Heroku or directly from the used machine.  
 
   1) Clone this repository by <code>git clone</code> and enter the folder
 
@@ -51,7 +99,7 @@ The following project can be used locally. <b>Make sure you have installed both 
   
  # Tests
  
- This application is provided with tests, especially for the backend. In order to run the tests, it is required to have some data in the database. To run all backend tests, browse to the backend folder -- considering you are in the app -- by <code> cd backend</code> the tests <code>npm test</code>. To run the tests coverage, inside the backend folder, run <code>npm run test:coverage</code>. Please, notice that unfortunately some tests are failing due to exceed number of access, in the Heroku hosted database. 
+ This application is provided with tests, especially for the backend. In order to run the tests, it is required to have some data in the database. To run all backend tests, browse to the backend folder -- considering you are in the app -- by <code> cd backend</code> the tests <code>npm test</code>. To run the tests coverage, inside the backend folder, run <code>npm run test:coverage</code>. Please, notice that unfortunately some tests are failing due to exceed number of access in the Heroku hosted database, and generating a timeout error. 
 
 # Project Structure
 ```
