@@ -20,7 +20,7 @@ function SearchParameterForm() {
   };
 
   async function SearchParameter() {
-    await axios.get(`https://arcadis-backend.herokuapp.com/parameters/${parameterName}`)
+    await axios.get(`https://arcadis-backend.herokuapp.com/parameters/${parameterName}` || `http://localhost:3004/parameters/${parameterName}`)
       .then((response) => setParameter(response.data))
       .catch((err) => {
         setIsError(true);

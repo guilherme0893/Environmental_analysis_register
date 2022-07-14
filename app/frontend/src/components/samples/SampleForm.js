@@ -29,7 +29,7 @@ function SampleForm() {
   };
 
   async function create() {
-    axios.post('https://arcadis-backend.herokuapp.com/samples', {
+    axios.post('https://arcadis-backend.herokuapp.com/samples' || 'http://localhost:3004/samples', {
       name: sampleName,
       xCoordinate: Number(sampleXCoordinate),
       yCoordinate: Number(sampleYCoordinate),

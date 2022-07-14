@@ -20,7 +20,7 @@ function SearchSampleForm() {
   };
 
   async function searchSample() {
-    await axios.get(`https://arcadis-backend.herokuapp.com/samples/${sampleName}`)
+    await axios.get(`https://arcadis-backend.herokuapp.com/samples/${sampleName}` || `http://localhost:3004/samples/${sampleName}`)
       .then((response) => setSample(response.data))
       .catch((err) => {
         setIsError(true);
