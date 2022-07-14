@@ -13,7 +13,6 @@ Here the goal was to create an application where the user could initially regist
 - Filter the parameters above the legislation limit for fresh water (COPAM/CERH-MG nº 01 - 2008 Água Doce - Classe 2)
 - List all parameters and their related samples
 
-
 # Usage
 
 This application is free to be accessed. The React-based frontend is hosted on Vercel, and can be accessed here:
@@ -41,7 +40,7 @@ The following project can be used locally. <b>Make sure you have installed both 
     3.2) If you have any application running on port 3004, it is possible to change the port in the index.ts file
     
   4) To run the application locally <code>npm run dev</code>
- 
+  
 # Frontend
 
   1) Clone this repository by <code>git clone</code> and enter the folder
@@ -49,7 +48,10 @@ The following project can be used locally. <b>Make sure you have installed both 
   2) Go to the front by folder running <code>cd app/front</code> and inside of it <code>npm install</code> to install dependencies
   
   3) To run the application locally <code>npm start</code>
-
+  
+ # Tests
+ 
+ This application is provided with tests, especially for the backend. In order to run the tests, it is required to have some data in the database. To run all backend tests, browse to the backend folder -- considering you are in the app -- by <code> cd backend</code> the tests <code>npm test</code>. To run the tests coverage, inside the backend folder, run <code>npm run test:coverage</code>. Please, notice that unfortunately some tests are failing due to exceed number of access, in the Heroku hosted database. 
 
 # Project Structure
 ```
