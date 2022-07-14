@@ -14,14 +14,21 @@ const { expect } = chai;
 
 const samplePointsModel = new SamplePoints();
 
+type samplePointsType = {
+  id: number;
+  name: string;
+  xCoordinate: number;
+  yCoordinate: number;
+}
+
 describe('Tests the POST / route', () => {
   beforeAll(async () => {
     sinon
       .stub(samplePointsModel, 'getAll')
-      .resolves({ ...completeSamplePointsMock });
+      .resolves({ ...completeSamplePointsMock } as samplePointsType[]);
     sinon
       .stub(samplePointsModel, 'create')
-      .resolves({ ...samplePointMock });
+      .resolves({ ...samplePointMock } as samplePointsType);
   });
 
   afterAll(() => {
