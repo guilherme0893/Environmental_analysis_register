@@ -104,6 +104,9 @@ The frontend is setted to consume data supported by Axios. In the requisitions (
  This application is provided with tests, especially for the backend. In order to run the tests, it is required to have some data in the database. To run all backend tests, browse to the backend folder -- considering you are in the app -- by <code> cd backend</code> the tests <code>npm test</code>. To run the tests coverage, inside the backend folder, run <code>npm run test:coverage</code>. Please, notice that unfortunately some tests are failing due to exceed number of access in the Heroku hosted database, and generating a timeout error. 
 
 # Project Structure
+
+Here lies all information related to the whole project folder structure and associated files
+
 ```
 project/
 ├─ README.md
