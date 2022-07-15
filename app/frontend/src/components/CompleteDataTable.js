@@ -15,8 +15,6 @@ import { Select, TableContainer } from '@mui/material';
 import GlobalContext from '../context/GlobalContext';
 import Error from './Error';
 
-require('dotenv').config();
-
 function CompleteDataTable() {
   const {
     setCompleteData, selectValue, setSelectValue, completeData, setIsError, setError, isError,
