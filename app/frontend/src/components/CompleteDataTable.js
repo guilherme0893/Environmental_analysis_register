@@ -15,6 +15,8 @@ import { Select, TableContainer } from '@mui/material';
 import GlobalContext from '../context/GlobalContext';
 import Error from './Error';
 
+require('dotenv').config();
+
 function CompleteDataTable() {
   const {
     setCompleteData, selectValue, setSelectValue, completeData, setIsError, setError, isError,
@@ -28,7 +30,7 @@ function CompleteDataTable() {
   async function getCompleteData() {
     if (selectValue === 'default') return null;
     if (selectValue === 'completeData') {
-      await axios.get('https://arcadis-backend.herokuapp.com/completeData' || 'http://localhost:3004/completeData')
+      await axios.get('https://arcadis-backend.herokuapp.com/completeData' || `http://localhost:${process.env.LOCAL_PORT}/completeData`)
         .then((response) => setCompleteData(response.data))
         .catch((err) => {
           setIsError(true);
@@ -36,7 +38,7 @@ function CompleteDataTable() {
         });
     }
     if (selectValue === 'overlimitData') {
-      await axios.get('https://arcadis-backend.herokuapp.com/overlimitData' || 'http://localhost:3004/overlimitData')
+      await axios.get('https://arcadis-backend.herokuapp.com/overlimitData' || `http://localhost:${process.env.LOCAL_PORT}/overlimitData`)
         .then((response) => setCompleteData(response.data))
         .catch((err) => {
           setIsError(true);

@@ -41,7 +41,7 @@ function ParameterForm() {
   };
 
   async function create() {
-    axios.post('https://arcadis-backend.herokuapp.com/parameters' || 'http://localhost:3004/parameters', {
+    axios.post('https://arcadis-backend.herokuapp.com/parameters' || `http://localhost:${process.env.LOCAL_PORT}/parameters`, {
       samplePointName: sampleName,
       parameter,
       parameterUnity: unity,
