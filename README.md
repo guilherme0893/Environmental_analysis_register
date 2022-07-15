@@ -37,9 +37,8 @@ The following project can be used locally. <b>Make sure you have installed both 
 
   3) Attention that to run locally the backend
   
-    3.1) In this project, the backend port is setted as 3004, so make sure no application is running on this port
-    
-    3.2) If you have any application running on port 3004, it is possible to change the port in the index.ts file
+  3.1) In this project, the backend port is setted as 3004, so make sure no application is running on this port
+  3.2) If you have any application running on port 3004, it is possible to change the port. Simply create a  .env file and add the following: LOCAL_PORT = the port you wish to use.
     
   4) To run the application locally <code>npm run dev</code>
   
@@ -91,7 +90,7 @@ sampleParameters
 # Frontend
 
 The frontend is setted to consume data supported by Axios. In the requisitions (get and post), two url are provided to fetch data, as the given example:
-('https://arcadis-backend.herokuapp.com/parameters' || 'http://localhost:3004/parameters'). With this, it is possible to fetch data, whether it is hosted on Heroku or directly from the used machine.  
+('https://arcadis-backend.herokuapp.com/parameters' || 'http://localhost:3004/parameters'). With this, it is possible to fetch data, whether it is hosted on Heroku or directly from the used machine. Please, make sure to create a .env file and add the following info: REACT_APP_BACK_LOCAL_PORT= the port you are using in the backend.
 
   1) Clone this repository by <code>git clone</code> and enter the folder
 
