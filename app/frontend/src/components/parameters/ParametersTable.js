@@ -12,7 +12,7 @@ function ParametersTable() {
   const [parameters, setParameters] = React.useState([]);
 
   async function getAllParameters() {
-    const response = await axios.get('https://arcadis-backend.herokuapp.com/parameters' || 'http://localhost:3004/parameters');
+    const response = await axios.get('https://arcadis-backend.herokuapp.com/parameters' || `http://localhost:${process.env.LOCAL_PORT}/parameters`);
     setParameters(response.data);
   }
 
