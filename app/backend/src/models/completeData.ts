@@ -35,14 +35,14 @@ class CompleteDataModel {
         FROM samplePoints AS points
         LEFT JOIN sampleParameters AS parameters
         ON points.name = parameters.samplePointName
-  WHERE (parameter = 'cadmio' AND parameterValue > 0.001) 
-  OR (parameter = 'cromo' AND parameterValue > 0.01)
-  OR (parameter = 'aluminio' AND parameterValue > 0.1)
-  OR (parameter = 'arsenio' AND parameterValue > 0.01)
-  OR (parameter = 'chumbo' AND parameterValue > 0.01)
-  OR (parameter = 'cobre' AND parameterValue > 0.009)
-  OR (parameter = 'escherichia' AND parameterValue > 1000)
-  OR (parameter = 'DBO' AND parameterValue > 5);`;
+    WHERE (parameter = 'cadmio' AND parameterValue > 0.001) 
+    OR (parameter = 'cromo total' AND parameterValue > 0.01)
+    OR (parameter = 'aluminio dissolvido' AND parameterValue > 0.1)
+    OR (parameter = 'arsenio total' AND parameterValue > 0.01)
+    OR (parameter = 'chumbo total' AND parameterValue > 0.01)
+    OR (parameter = 'cobre dissolvido' AND parameterValue > 0.009)
+    OR (parameter = 'escherichia coli' AND parameterValue > 1000)
+    OR (parameter = 'DBO' AND parameterValue > 5);`;
     const [overlimit] = await connection.execute(query);
     return overlimit as ICompleteData[];
   };

@@ -7,6 +7,11 @@ class ParametersValidation {
       return res.status(400).json({
         message: 'The sample point is required, please register it before continue' });
     }
+    if (!samplePointName.substring('total') || !samplePointName.includes('dissolvido')) {
+      return res.status(400).json({
+        message: 'Please check if the parameter is correct',
+      });
+    }
     next();
   };
 
