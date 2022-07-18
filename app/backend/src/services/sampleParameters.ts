@@ -32,7 +32,7 @@ class SampleParameterService {
       );
       return newParameter;
     } catch (error) {
-      throw new Error('This sample has not been registed yet! Register it first before continuing');
+      throw new Error('This sample has not been registred yet! Register it first before continue');
     }
   };
 

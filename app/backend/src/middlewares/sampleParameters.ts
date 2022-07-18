@@ -1,5 +1,21 @@
 import { NextFunction, Request, Response } from 'express';
 
+const parameterNames = [
+  'aluminio dissolvido',
+  'arsenio total',
+  'chumbo total',
+  'cobre dissolvido',
+  'escherichia coli',
+  'cromo total',
+  'cadmio total',
+  'DBO',
+];
+
+const parameterValueList = [
+  'mg/l',
+  'NMP/100ml',
+  'mg O2/l',
+];
 class ParametersValidation {
   public samplePointNameValidation = (req: Request, res: Response, next: NextFunction) => {
     const { samplePointName } = req.body;
@@ -15,6 +31,13 @@ class ParametersValidation {
     if (!parameter || parameter === '') {
       return res.status(400).json({ message: 'The parameter is required' });
     }
+    if (!parameterNames.includes(parameter)) {
+      return res.status(400).json({
+        message: `Please check if the parameter is correct. 
+          We are currently accepting the following parameters: aluminio dissolvido, arsenio total,
+            chumbo total, cobre dissolvido, escherichia coli, cromo total, cadmio total, DBO.`,
+      });
+    }
     next();
   };
 
@@ -22,6 +45,11 @@ class ParametersValidation {
     const { parameterUnity } = req.body;
     if (!parameterUnity || parameterUnity === '') {
       return res.status(400).json({ message: 'The parameter unity is required' });
+    }
+    if (!parameterValueList.includes(parameterUnity)) {
+      return res.status(400).json({ message: `Please check the parameter. We are currently
+        accepting the following parameters unity: mg/l, NMP/100ml, mg O2/l`,
+      });
     }
     next();
   };

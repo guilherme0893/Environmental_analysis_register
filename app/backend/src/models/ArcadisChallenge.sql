@@ -24,7 +24,7 @@ INSERT INTO samplePoints (name, x_coordinate, y_coordinate) VALUES
     ('ponto 2', 40.35, -50.74);
 
 INSERT INTO sampleParameters (samplePointName, parameter, parameterUnity, parameterValue, samplingDate) VALUES
-	('ponto 1', 'cadmio', 'mg/l', 0.1, '2011-08-22'),
-    ('ponto 1', 'cromo', 'mg/l', 0.1, '2011-08-21'),
-    ('ponto 2', 'arsenio', 'mg/l', 0.001, '2022-07-12');
+	('ponto 1', 'cadmio total', 'mg/l', 0.1, '2011-08-22'),
+    ('ponto 1', 'cromo total', 'mg/l', 0.1, '2011-08-21'),
+    ('ponto 2', 'arsenio total', 'mg/l', 0.001, '2022-07-12');
     
