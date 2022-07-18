@@ -4,7 +4,7 @@ Welcome to the Arcadis Challenge repository, here is registed all steps taken by
 
 # The problem and its solution
 
-In many environmental studies, it is necessary to sample data throughout the study area during different time periods in order to analyze water quality, for example, and potential pollution impacts. It is also very common the collected data to be large, what makes harder to deal with it. Having that in mind, this application provides a solution; the goal is to create an application -- which is desing to work both on mobile devices or desktop via web -- where the user is able to register samples, initially by adding their name, X and Y coordinates. Then, whether the sample has any measured parameter, it is possible to register it; here the parameters is composed o measured parameter name, its value, the unity used and the sampling date. A way of visualizing data was also created, so one user is able to retrieve all samples or a single sample, all parametrs or a single parameters, and all data registered and all data that is above a limit provided by COPAM/CERH-MG nº 01 - 2008 Água Doce - Classe 2 legislation for fresh water.
+In many environmental studies, it is necessary to sample data throughout the study area during different time periods in order to analyze water quality, for example, and potential pollution impacts. It is also very common the collected data to be large, what makes harder to deal with them. Having that in mind, this application provides a solution -- which is desing to work both on mobile devices or desktop via web -- where the user is able to register samples, initially by adding their name, X and Y coordinates. Then, if the sample has any measured parameter, it is possible to register them; here the parameter is composed of the measured parameter name, its value, the unity used and the sampling date. A way of visualizing data was also created, so one user is able to retrieve all samples or a single sample, all parametrs or a single parameters, and all data registered and all data that is above a limit provided by COPAM/CERH-MG nº 01 - 2008 Água Doce - Classe 2 legislation for fresh water.
 
 In summary, it is possible to:
 
@@ -14,6 +14,30 @@ In summary, it is possible to:
 - Search for parameters
 - Filter the parameters above the legislation
 - List all parameters and their related samples
+
+# Stacks used
+
+For the frontend, the following stacks are used:
+1) React using JavaScript
+2) Material UI
+3) Axios
+4) Eslint
+
+For the backend, the following stacks are used:
+1) NodeJS with Express and TypeScript
+2) Nodemon
+3) Cors
+4) Mocha, Chai & Sinon
+5) Dotenv 
+6) Eslint
+7) Postman
+
+For the application database, the following are used:
+1) SQL database using MySQL Workbench
+
+For deployment, the following tools are used:
+1) Vercel for the frontend
+2) Heroku for the backend and the associated ClearDB for hosting the database
 
 # How to use
 
