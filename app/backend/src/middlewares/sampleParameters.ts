@@ -29,7 +29,7 @@ class ParametersValidation {
       return res.status(400).json({
         message: `Please check if the parameter is correct. 
           We are currently accepting the following parameters: aluminio dissolvido, arsenio total,
-            chumbo tota l,cobre dissolvido, escherichia coli, cromo total, cadmio total, DBO.`,
+            chumbo total, cobre dissolvido, escherichia coli, cromo total, cadmio total, DBO.`,
       });
     }
     next();
