@@ -10,6 +10,12 @@ const parameterNames = [
   'cadmio total',
   'DBO',
 ];
+
+const parameterValueList = [
+  'mg/l',
+  'NMP/100ml',
+  'mg O2/l',
+];
 class ParametersValidation {
   public samplePointNameValidation = (req: Request, res: Response, next: NextFunction) => {
     const { samplePointName } = req.body;
@@ -39,6 +45,11 @@ class ParametersValidation {
     const { parameterUnity } = req.body;
     if (!parameterUnity || parameterUnity === '') {
       return res.status(400).json({ message: 'The parameter unity is required' });
+    }
+    if (!parameterValueList.includes(parameterUnity)) {
+      return res.status(400).json({ message: `Please check the parameter. We are currently
+        accepting the following parameters unity: mg/l, NMP/100ml, mg O2/l`,
+      });
     }
     next();
   };
