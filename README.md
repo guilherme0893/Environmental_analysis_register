@@ -126,6 +126,11 @@ The frontend is setted to consume data supported by Axios. In the requisitions (
  # Tests
  
  This application is provided with tests, especially for the backend. In order to run the tests, it is required to have some data in the database. To run all backend tests, browse to the backend folder -- considering you are in the app -- by <code> cd backend</code> the tests <code>npm test</code>. To run the tests coverage, inside the backend folder, run <code>npm run test:coverage</code>. Please, notice that unfortunately some tests are failing due to exceed number of access in the Heroku hosted database, and generating a timeout error. 
+ 
+# Future updates
+
+For the next steps, this project will be available via Docker. The docker files are already created, but do not work properly. Soon there will be a docker compose to run the front, back and the mysql database. 
+Also, it is expected the project to have a larger test covering, especially for the frontend.
 
 # Project Structure
 
