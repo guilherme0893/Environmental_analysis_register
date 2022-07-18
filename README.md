@@ -211,11 +211,39 @@ project/
 │  │  │  ├─ index.js
 │  │  │  ├─ renderWithRouter.js
 │  │  │  ├─ __tests__/
-│  │  │  ├─ components/
-│  │  │  ├─ context/
-│  │  │  ├─ images/
-│  │  │  ├─ pages/
-│  │  │  ├─ routes/
-│  │  │  ├─ index.css
-│  │  │  ├─ index.js
+│  │  │  │  ├─ pages
+│  │  │  │  |   ├─ main.test.js
+│  │  │  │  |   ├─ notFound.test.js
+│  │  │  │  ├─ components
+│  │  │  │  |   ├─ header.test.js
+│  │  │  │  |   ├─ parameterForm.test.js
+│  │  │  │  |   ├─ parameterTable.test.js
+│  │  │  │  |   ├─ sampleForm.test.js
+│  │  │  │  |   ├─ sampleTabletest.js
+│  │  │  │  ├─ components
+│  │  │  │  |   ├─ parameters
+|  │  │  │  │   |  ├─ ParameterForm.js
+|  │  │  │  │   |  ├─ ParametersTable.js
+|  │  │  │  │   |  ├─ SearchParameterForm.js
+|  │  │  │  │   |  ├─ SearchParameterTable.js
+│  │  │  │  |   ├─ samples
+|  │  │  │  │   |  ├─ SampleForm.js
+|  │  │  │  │   |  ├─ SampleTable.js
+|  │  │  │  │   |  ├─ SearchSampleForm.js
+|  │  │  │  │   |  ├─ SearchSampleTable.js
+|  │  │  │  │   ├─ CompleteDataTable.js.js
+|  │  │  │  │   ├─ Error.js
+|  │  │  │  │   ├─ FormTabs.js
+|  │  │  │  │   ├─ Header.js
+|  │  │  │  │   ├─ TablesTabs.js.js
+│  │  │  │  ├─ context
+│  │  │  │  |   ├─ GlobalContext.js
+│  │  │  │  |   ├─ GlobalProvider.js
+│  │  │  │  ├─ images
+│  │  │  │  |   ├─ arcadis-logo-black.svg
+│  │  │  │  ├─ pages
+│  │  │  │  |   ├─ Main.js
+│  │  │  │  |   ├─ NotFound.js
+│  │  │  │  ├─ routes
+│  │  │  │  |   ├─ Route.js
 ``` 
