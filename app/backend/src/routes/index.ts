@@ -1,12 +1,11 @@
 import { Router } from 'express';
-import Parameters from '../routes/sampleParameters';
-import CompleteData from '../routes/completeData';
-import Points from '../routes/samplePoints';
+// import Parameters from '../routes/sampleParameters';
+// import CompleteData from '../routes/completeData';
+// import Points from '../routes/samplePoints';
+import Points from './points';
 
 const routes = Router();
 
-routes.use('/completeData', CompleteData);
-routes.use('/parameters', Parameters);
-routes.get('/samples', Points);
+routes.use('/points', Points);
 
 export default routes;
