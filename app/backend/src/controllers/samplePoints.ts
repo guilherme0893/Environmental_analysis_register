@@ -32,7 +32,7 @@ class SampleController {
       const sample = await this.sampleService.create(name, xCoordinate, yCoordinate);
       return res.status(201).json(sample);
     } catch (error) {
-      return res.status(409).json({
+      return res.status(400).json({
         message: 'Sample already registered',
       });
     }
