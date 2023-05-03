@@ -3,6 +3,8 @@ interface ISample {
   name: string;
   xCoordinate: number;
   yCoordinate: number;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
 }
 
 export default ISample;
