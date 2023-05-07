@@ -53,11 +53,13 @@
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
+    "http-errors": "^2.0.0",
     "mysql2": "^2.3.3",
     "prisma": "^4.11.0",
     "swagger": "^0.0.1",
     "swagger-ui": "^4.18.1",
     "swagger-ui-express": "^4.6.2",
-    "tsoa": "^5.1.1"
+    "tsoa": "^5.1.1",
+    "zod": "^3.21.4"
   }
 }

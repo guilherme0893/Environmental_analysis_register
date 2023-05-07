@@ -12,7 +12,7 @@ datasource db {
 
 model Points {
   id            Int       @id @default(autoincrement())
-  name          String    @db.VarChar(200)
+  name          String    @db.VarChar(200) @unique
   xCoordinate   Int
   yCoordinate   Int
   parameter     Parameters[]
