@@ -1,22 +1,70 @@
 import { PrismaClient } from '@prisma/client';
-import ISample from '../interfaces/ISample';
+import IPoint, { Point } from '../interfaces/IPoint';
+import IService from '../interfaces/IService';
+import { BadRequestError, Conflict } from '../utils/errors/index';
 
-class PointsService {
+class PointsService implements IService<IPoint> {
   private prisma = new PrismaClient();
 
-  // private main = async () => {
-  //   await this.prisma.$disconnect().catch(async (error) => {
-  //     console.log(error);
-  //     await this.prisma.$disconnect();
-  //     process.exit(1);
-  //   });
-  // };
-
-  public create = async (data: ISample): Promise<ISample> => {
-    const sample = await this.prisma.points.create({
-      data,
+  public create = async (data: Point) => {
+    const { name, xCoordinate, yCoordinate } = data;
+    const pointExists = await this.prisma.points.findMany({
+      where: {
+        name: data.name,
+      },
     });
-    return sample;
+    if (pointExists) {
+      throw new Conflict('User already exists with this email.');
+    }
+    const point = await this.prisma.points.create({
+      data: {
+        name,
+        xCoordinate,
+        yCoordinate,
+      },
+    });
+    return point;
+  };
+
+  public getAll = async () => {
+    const points = await this.prisma.points.findMany();
+    return points;
+  };
+
+  public getOne = async (id: number) => {
+    const point = await this.prisma.points.findUnique({
+      where: {
+        id,
+      },
+    });
+
+    console.log(id, point);
+
+    if (id === null || id === undefined) {
+      throw new BadRequestError('Id not provided.');
+    }
+
+    if (!point || point === null) {
+      throw new Error('Database error. Point not found');
+    } else {
+      return [point];
+    }
+  };
+
+  public update = async (_id: number, _data: Partial<IPoint>) => {
+    throw new Error('Method not implemented.');
+  };
+
+  public delete = async (id: number) => {
+    const point = await this.prisma.points.delete({
+      where: {
+        id,
+      },
+    });
+    if (id === null || id === undefined) {
+      throw new BadRequestError('Id not provided.');
+    }
+    return point;
   };
 }
 

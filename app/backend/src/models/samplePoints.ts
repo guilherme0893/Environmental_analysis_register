@@ -1,7 +1,7 @@
 /* eslint-disable max-lines-per-function */
 import { ResultSetHeader } from 'mysql2/promise';
 import connection from './connection';
-import ISample from '../interfaces/ISample';
+import ISample from '../interfaces/IPoint';
 
 class SamplePointModel {
   public getAll = async (): Promise<ISample[]> => {

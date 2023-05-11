@@ -1,5 +1,5 @@
 import SampleModel from '../models/samplePoints';
-import ISample from '../interfaces/ISample';
+import ISample from '../interfaces/IPoint';
 
 class SampleService {
   public sampleModel = new SampleModel();
