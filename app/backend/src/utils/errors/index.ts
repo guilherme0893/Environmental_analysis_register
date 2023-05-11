@@ -3,6 +3,7 @@ import BadRequestError from './BadRequest';
 import NotFoundError from './NotFound';
 import InternalServerError from './InternalServerError';
 import Conflict from './Conflict';
+import AppError from './appError';
 
 export {
   RequestError,
@@ -10,4 +11,5 @@ export {
   NotFoundError,
   InternalServerError,
   Conflict,
+  AppError,
 };
