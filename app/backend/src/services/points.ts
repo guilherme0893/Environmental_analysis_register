@@ -38,8 +38,6 @@ class PointsService implements IService<IPoint> {
       },
     });
 
-    console.log(id, point);
-
     if (id === null || id === undefined) {
       throw new BadRequestError('Id not provided.');
     }

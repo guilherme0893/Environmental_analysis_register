@@ -1,10 +1,7 @@
 import { Router } from 'express';
 import PointsController from '../controllers/points';
-// import PointVerification from '../middlewares/pointVerification';
 
 const points = new PointsController();
-
-// const validation = new PointVerification();
 
 const routes = Router();
 
