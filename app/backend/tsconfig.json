@@ -9,5 +9,5 @@
     "strict": true,
     "resolveJsonModule": true,
   },
-  "include": ["./src/**/**/**/*.ts", "singleton.ts", "client.ts", "sampleFunctions.ts"]
+  "include": ["./src/**/**/**/*.ts", "singleton.ts", "client.ts", "pointFunctions.ts", "pointParameterFunction.ts"]
 }

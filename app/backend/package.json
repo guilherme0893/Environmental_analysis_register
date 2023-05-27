@@ -11,6 +11,9 @@
     "test": "jest -i",
     "lint": "eslint ./src --ext .ts"
   },
+  "prisma": {
+    "seed": "ts-node prisma/seeds/seeds.ts"
+  },
   "keywords": [],
   "author": "Guilherme Duarte",
   "license": "ISC",
