@@ -14,7 +14,7 @@ class PointsService implements IService<IPoint> {
       },
     });
     if (pointExists) {
-      throw new Conflict('User already exists with this email.');
+      throw new Conflict('Point already exists with this name.');
     }
     const point = await this.prisma.points.create({
       data: {
