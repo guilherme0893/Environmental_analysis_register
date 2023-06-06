@@ -5,3 +5,5 @@ dist
 .env.test
 /coverage.data
 /coverage/
+docker-compose.yml
+Dockerfile
