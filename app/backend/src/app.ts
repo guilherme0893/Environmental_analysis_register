@@ -1,21 +1,15 @@
 import express from 'express';
 import cors from 'cors';
-import Samples from './routes/samplePoints';
-import Parameters from './routes/sampleParameters';
-import CompleteData from './routes/completeData';
+import swaggerUi from 'swagger-ui-express';
+import swagger from './swagger.json';
+import routes from './routes/index';
 
 const app = express();
 
 app.use(express.json());
 app.use(cors());
 
-app.use(Samples);
-
-app.use(Parameters);
-
-app.use(CompleteData);
-
-// app.get('/', (_request: Request, response: Response) =>
-//   response.send({ status: 'I am alive!' }));
+app.use('/v1', routes);
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(swagger));
 
 export default app;

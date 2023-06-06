@@ -1,0 +1,93 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Arcadis Challenge API",
+    "description": "API for saving and retrieving data from environmental research",
+    "termsOfService": "http://localhost:8080/terms",
+    "contact": {
+    "email": "guilhermeduarte008@gmail.com"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8080/v1",
+      "description": "Development and Testing API"
+    },
+    {
+      "url": "http://www.xxx.com",
+      "description": "Production API"
+    }
+  ],
+  "paths": {
+    "/samples": {
+      "post": {
+        "summary": "Creates sample",
+        "description": "Route for creating new sample",
+        "tags": ["Sample"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Sample"
+              },
+              "examples": {
+                "Sample": {
+                  "value": {
+                    "name": "cromo",
+                    "xCoordinate": "90.0",
+                    "yCoordinate": "180.0"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "reponses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Sample"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Sample already registered"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Sample": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "xCoordinate": {
+            "type": "number"
+          },
+          "yCoordinate": {
+            "type": "number"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}

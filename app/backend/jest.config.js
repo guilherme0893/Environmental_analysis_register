@@ -1,6 +1,6 @@
 module.exports = {
+  clearMocks: true,
   preset: 'ts-jest',
   testEnvironment: 'node',
-  setupFiles: ['dotenv/config'],
-  modulePathIgnorePatterns: ['./src/__tests__/mocks/*']
+  setupFilesAfterEnv: ['<rootDir>/singleton.ts'],
 };
