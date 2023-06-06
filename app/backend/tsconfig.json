@@ -8,6 +8,7 @@
     "esModuleInterop": true,
     "strict": true,
     "resolveJsonModule": true,
+    "noEmit": false
   },
-  "include": ["./src/**/**/**/*.ts", "singleton.ts", "client.ts", "pointFunctions.ts", "pointParameterFunction.ts"]
+  "include": ["./src/**/**/**/*.ts", "singleton.ts", "client.ts", "pointFunctions.ts", "pointParameterFunction.ts"],
 }

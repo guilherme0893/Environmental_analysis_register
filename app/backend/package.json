@@ -4,8 +4,8 @@
   "description": "Backend for Arcadis Challenge",
   "main": "index.js",
   "scripts": {
-    "start": "node dist/src/index.js",
-    "build": "tsc",
+    "start": "node app/backend/dist/src/index.js",
+    "build": "tsc --project tsconfig.json",
     "dev": "nodemon --watch \"./src/**\" ./src/index.ts",
     "test:coverage": "jest --coverage",
     "test": "jest -i",
