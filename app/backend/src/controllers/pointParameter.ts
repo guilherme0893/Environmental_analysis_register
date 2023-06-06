@@ -6,7 +6,7 @@ import { AppError } from '../utils/errors';
 import IPointParameter from '../interfaces/IPointParameter';
 
 class PointParameterController implements IController<IPointParameter> {
-  protected pointParameterService = new PointParameterService(); // testing
+  protected pointParameterService = new PointParameterService();
 
   readonly create = async (req: Request, res: Response): Promise<Response<IPointParameter>> => {
     try {
