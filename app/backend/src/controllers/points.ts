@@ -52,6 +52,36 @@ class PointController implements IController<IPoint> {
     }
   };
 
+  readonly getByParameter = async (req: Request, res: Response): Promise<Response<IPoint[]>> => {
+    try {
+      const { parameterId } = req.params;
+      if (!parameterId || parameterId === undefined) {
+        return res.status(400).json({
+          message: 'Please, provide an id.',
+          status: false,
+        });
+      }
+
+      const pointsByParameter = await this.pointsService.getByParameter(Number(parameterId));
+
+      return res.status(200).json({
+        status: true,
+        message: 'Points by parameter found',
+        pointsByParameter,
+      });
+    } catch (err: any) {
+      if (err instanceof AppError) {
+        return res.status(err.statusCode).json({
+          status: false,
+          error: err.message,
+        });
+      }
+      return res.status(500).json({
+        error: 'Internal server error.',
+      });
+    }
+  };
+
   readonly getOne = async (req: Request, res: Response): Promise<Response<IPoint[]>> => {
     try {
       const { id } = req.params;

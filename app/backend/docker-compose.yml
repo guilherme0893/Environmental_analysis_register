@@ -1,17 +1,67 @@
-version: '3.3'
+# version: '3.9'
+# services:
+#   arcadischallenge:
+#     build: 
+#       context: .
+#       dockerfile: Dockerfile
+#     container_name: arcadischallenge
+#     depends_on:
+#       - db
+#     expose:
+#       - '3000'
+#     ports:
+#     - "3000:3000"
+#     env_file:
+#       - ./.env.test
+#     command: npm start
+
+#   db:
+#     image: postgres:15.3
+#     container_name: db
+#     ports:
+#       - 5433:5432
+#     env_file:
+#       - ./.env.test
+#     environment:
+#       POSTGRES_USER: root
+#       POSTGRES_PASSWORD: root
+#       POSTGRES_DB: test
+#     volumes:
+#       - db:/var/lib/postgresql/data
+#     restart: unless-stopped
+
+# volumes:
+#   db:
+#     driver: local
+
+version: '3.9'
 
 services:
-  db:
-    image: postgres:13
-    restart: always
-    environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-    container_name: integration-tests-prisma
-    ports:
-      - '5433:5432'
+  api:
+    build:
+      context: .
+      target: development
     volumes:
-      - db:/var/lib/postgresql/data
-volumes:
+      - ./:/app/backend
+      - /backend/node_modules
+    ports:
+      - 8080:8080
+    command: npm run dev
+    restart: always
+
   db:
-    driver: local
+    image: postgres:latest
+    container_name: postgres
+    hostname: postgres
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: db
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+volumes:
+  postgres-data:

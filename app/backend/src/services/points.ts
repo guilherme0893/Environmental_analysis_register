@@ -27,7 +27,11 @@ class PointsService implements IService<IPoint> {
   };
 
   public getAll = async () => {
-    const points = await this.prisma.points.findMany();
+    const points = await this.prisma.points.findMany({
+      include: {
+        parameter: {},
+      },
+    });
     return points;
   };
 
@@ -35,6 +39,9 @@ class PointsService implements IService<IPoint> {
     const point = await this.prisma.points.findUnique({
       where: {
         id,
+      },
+      include: {
+        parameter: {},
       },
     });
 
@@ -47,6 +54,19 @@ class PointsService implements IService<IPoint> {
     } else {
       return [point];
     }
+  };
+
+  public getByParameter = async (parameterId: number) => {
+    const pointsByParameter = await this.prisma.points.findMany({
+      include: {
+        parameter: {
+          where: {
+            id: parameterId,
+          },
+        },
+      },
+    });
+    return pointsByParameter;
   };
 
   public update = async (_id: number, _data: Partial<IPoint>) => {
